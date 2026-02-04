@@ -94,7 +94,7 @@ export interface SiteContent {
 
 export const siteContent: SiteContent = {
   meta: {
-    title: 'Reeguer Amor',
+    title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
     lastUpdated: '6 de Fevereiro de 2026',
   },
