@@ -765,9 +765,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-5 md:px-10 py-10">
           <div className="text-center space-y-3">
             <p className="text-sm text-slate-300 font-medium">
-              {c.contact.entity}, {c.contact.municipality}
+              Developed by{' '}
+              <a href="https://jonioliveira.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-400 transition-colors underline underline-offset-2">
+                Joni Oliveira
+              </a>
             </p>
-            <p className="text-xs">Última atualização: {c.meta.lastUpdated}</p>
+            <p className="text-xs">Made with ❤️ from Amor, Leiria</p>
+            <p className="text-xs mt-1">Última atualização: {c.meta.lastUpdated}</p>
             <div className="pt-4 border-t border-slate-800 mt-4">
               <p className="text-xs text-slate-500">Página não oficial. Informação sujeita a alterações.</p>
             </div>
