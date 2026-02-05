@@ -96,7 +96,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '6 de Fevereiro de 2026',
+    lastUpdated: '5 de Fevereiro de 2026',
   },
 
   navSections: [
@@ -104,7 +104,7 @@ export const siteContent: SiteContent = {
     { id: 'recursos', label: 'Recursos' },
     { id: 'limpeza', label: 'Limpeza' },
     { id: 'transporte', label: 'Transporte' },
-    { id: 'declaracoes', label: 'Declarações' },
+    { id: 'declaracoes', label: 'Apoios' },
     { id: 'meteo', label: 'Meteorologia' },
     { id: 'contactos', label: 'Contactos' },
   ],
@@ -248,8 +248,8 @@ export const siteContent: SiteContent = {
     {
       id: 'resource-tempestades-sos',
       title: 'Tempestades SOS',
-      description: 'Plataforma para pedir or fornecer ajuda em caso de tempestades.',
-      link: 'https://tempestades-sos.pt/',
+      description: 'Plataforma para pedir ou fornecer ajuda em caso de tempestades.',
+      link: 'http://tempestadesos.com/',
       linkLabel: 'Aceder →',
     },
   ],
@@ -293,6 +293,13 @@ export const siteContent: SiteContent = {
   ],
 
   administrative: [
+    {
+      id: 'admin-survey',
+      title: 'Inquérito de Danos em Propriedades',
+      description: 'Preencha o inquérito oficial para reportar danos causados pela tempestade na sua propriedade.',
+      link: 'https://survey123.arcgis.com/share/ea5bef31fc9248499869f245c5af2624',
+      linkLabel: 'Preencher inquérito →',
+    },
     {
       id: 'admin-agriculture',
       title: 'Declaração de estragos agrícolas',

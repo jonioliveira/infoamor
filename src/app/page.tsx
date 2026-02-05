@@ -607,7 +607,7 @@ export default function Home() {
         {/* -------------------------------------------------------------- */}
         <section className="py-14 md:py-20">
           <div className="max-w-6xl mx-auto px-5 md:px-10">
-            <SectionHeader id="declaracoes" icon={<FileText className="h-5 w-5" />} title="Declarações e Documentos" />
+            <SectionHeader id="declaracoes" icon={<FileText className="h-5 w-5" />} title="Apoios e Declarações" />
             <div className="space-y-5">
               {c.administrative.map(item => (
                 <div key={item.id} className="bg-white rounded-2xl shadow-md border border-slate-100 p-6 md:p-8">
