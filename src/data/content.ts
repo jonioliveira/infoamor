@@ -15,6 +15,7 @@ export interface ServiceStatus {
   status: ServiceStatusLevel
   statusLabel: string
   description: string
+  warning?: string
   link?: string
   linkLabel?: string
 }
@@ -112,10 +113,16 @@ export const siteContent: SiteContent = {
 
   alerts: [
     {
-      id: 'alert-cables',
+      id: 'alert-roads',
       level: 'danger',
-      title: 'Cuidado com cabos elétricos caídos',
-      description: 'Não toque em cabos caídos. Podem conter energia. Mantenha distância e contacte as autoridades.',
+      title: 'Estrada Gândara–Barreiros fechada',
+      description: 'A estrada entre a Gândara e os Barreiros está fechada devido à subida do rio. Alternativas por Monte Real ou Marinha Grande.',
+    },
+    {
+      id: 'alert-roads-info',
+      level: 'info',
+      title: 'Estado dos acessos',
+      description: 'A17 pelo Campo: Fechado. Barreiros–Ponta da Pedra: Fechado. Monte Real (Rua da Base Aérea): Aberto. Marinha Grande (Casalito, Casal Novo, Coucinheira): Aberto.',
     },
     {
       id: 'alert-cleanup',
@@ -141,12 +148,6 @@ export const siteContent: SiteContent = {
       title: 'Internet limitada na Junta',
       description: 'De momento, temos internet muito limitada na Junta de Freguesia, o que não nos vai permitir atender todos os fregueses com a rapidez que gostaríamos.',
     },
-    {
-      id: 'alert-roads',
-      level: 'info',
-      title: 'Estado dos acessos',
-      description: 'A17 pelo Campo: Fechado. Barreiros–Ponta da Pedra: Fechado. Monte Real (Rua da Base Aérea): Aberto. Leiria (Barreiros–Gândara): Aberto (cuidado com água do rio). Marinha Grande (Casalito, Casal Novo, Coucinheira): Aberto.',
-    },
   ],
 
   serviceStatus: [
@@ -163,7 +164,8 @@ export const siteContent: SiteContent = {
       status: 'partial',
       statusLabel: 'Parcial',
       description:
-        'Falhas de abastecimento na zona das Barradas, Brejieira e Toco. Estão a tentar restabelecer estas ligações nas próximas horas. Pode carregar o telemóvel na Junta.',
+        'Falhas de abastecimento na zona das Barradas, Brejieira e Toco. Estão a tentar restabelecer nas próximas horas.',
+      warning: 'Cuidado com cabos caídos — não toque, podem ter energia.',
       link: 'https://balcaodigital.e-redes.pt/home/risky',
       linkLabel: 'Reportar cabos perigosos →',
     },

@@ -177,6 +177,12 @@ function ServiceCard({ service }: { service: ServiceStatus }) {
         <StatusBadge status={service.status} label={service.statusLabel} />
       </div>
       <p className="text-sm text-slate-500 leading-relaxed">{service.description}</p>
+      {service.warning && (
+        <div className="mt-3 flex items-start gap-2 text-sm font-semibold text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+          <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />
+          <span>{service.warning}</span>
+        </div>
+      )}
       {service.link && (
         <a
           href={service.link}
