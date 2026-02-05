@@ -368,10 +368,10 @@ export default function Home() {
       {/* EMERGENCY BAR - Always visible                                      */}
       {/* ================================================================== */}
       <div className="fixed top-0 left-0 right-0 bg-red-600 text-white z-[60] shadow-lg">
-        <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-center">
           <a
               href={`tel:${c.contact.mobile}`}
-              className="inline-flex items-center gap-2 bg-white text-red-600 font-bold px-4 py-1.5 rounded-full text-sm hover:bg-red-50 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-red-600 font-bold px-5 py-1.5 rounded-full text-sm hover:bg-red-50 transition-colors"
             >
               <PhoneCall className="h-4 w-4" />
               <span className="hidden sm:inline">Ligar Junta:</span> 927 589 981
