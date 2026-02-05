@@ -112,13 +112,6 @@ export const siteContent: SiteContent = {
 
   alerts: [
     {
-      id: 'alert-leonardo',
-      level: 'danger',
-      title: 'Depressão Leonardo — Agravamento do mau tempo',
-      description:
-        'Aviso amarelo para chuva e vento (00h – 15h, rajadas até 90 km/h). Solos saturados — risco de cheias nas zonas baixas. Evite deslocações desnecessárias e afaste-se de zonas inundáveis.',
-    },
-    {
       id: 'alert-cables',
       level: 'danger',
       title: 'Cuidado com cabos elétricos caídos',
