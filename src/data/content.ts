@@ -139,7 +139,7 @@ export const siteContent: SiteContent = {
       id: 'alert-damages',
       level: 'warning',
       title: 'Declare os seus estragos',
-      description: 'Preencha as declarações de prejuízos agrícolas e empresariais com a maior brevidade possível.',
+      description: 'Preencha as declarações de prejuízos agrícolas, empresariais e em habitações com a maior brevidade possível.',
     },
   ],
 
