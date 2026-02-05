@@ -113,21 +113,15 @@ export const siteContent: SiteContent = {
     {
       id: 'alert-leonardo',
       level: 'danger',
-      title: 'Depressão Leonardo — Agravamento do mau tempo a partir das 21h',
+      title: 'Depressão Leonardo — Agravamento do mau tempo',
       description:
-        'Aviso amarelo para chuva (15h hoje – 9h amanhã) e vento (00h – 15h amanhã, rajadas até 90 km/h). Solos saturados — risco de cheias nas zonas baixas. Evite deslocações desnecessárias e afaste-se de zonas inundáveis.',
+        'Aviso amarelo para chuva e vento (00h – 15h, rajadas até 90 km/h). Solos saturados — risco de cheias nas zonas baixas. Evite deslocações desnecessárias e afaste-se de zonas inundáveis.',
     },
     {
       id: 'alert-cables',
       level: 'danger',
       title: 'Cuidado com cabos elétricos caídos',
       description: 'Não toque em cabos caídos. Podem conter energia. Mantenha distância e contacte as autoridades.',
-    },
-    {
-      id: 'alert-barreiros',
-      level: 'info',
-      title: 'EB dos Barreiros abre amanhã',
-      description: 'A Escola Básica dos Barreiros reabre amanhã.',
     },
     {
       id: 'alert-cleanup',
@@ -182,9 +176,9 @@ export const siteContent: SiteContent = {
     {
       id: 'service-schools',
       name: 'Escolas',
-      status: 'in_progress',
-      statusLabel: 'Em progresso',
-      description: 'A EB dos Barreiros reabre amanhã. Todas as restantes escolas e jardins de infância já abertas.',
+      status: 'operational',
+      statusLabel: 'Operacional',
+      description: 'Todas as escolas e jardins de infância estão abertos.',
       link: 'https://aemarrazes.com/pt/ultimas/estabelecimentos-de-educacao-e-ensino-do-agrupamento-com-condicoes-de-funcionamento-informacao-de-reabertura-atualizado-em-04-02-2026-15-54h-',
       linkLabel: 'Ver informação do Agrupamento →',
     },
@@ -237,6 +231,12 @@ export const siteContent: SiteContent = {
       description: 'Grupo comunitário com informações atualizadas sobre a situação na freguesia.',
       link: 'https://chat.whatsapp.com/FisY199oJlgB3umsP5tfoG',
       linkLabel: 'Entrar no grupo →',
+    },
+    {
+      id: 'resource-door-to-door',
+      title: 'Apoio porta a porta',
+      description:
+        'A Junta, Conferência São Vicente de Paulo e Cáritas de Leiria estão a realizar visitas porta a porta para verificar o estado das pessoas e habitações. Se conhecer alguém que precise de ajuda, alerte a Junta.',
     },
     {
       id: 'resource-sos-leiria',

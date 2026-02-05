@@ -38,6 +38,7 @@ import {
   Sun,
   Thermometer,
   Trash2,
+  Users,
   Utensils,
   Wifi,
   Wind,
@@ -114,6 +115,7 @@ const resourceIcons: Record<string, React.ReactNode> = {
   'resource-debris': <Hammer className="h-6 w-6 text-stone-500" />,
   'resource-internet': <Wifi className="h-6 w-6 text-blue-500" />,
   'resource-whatsapp': <MessageCircle className="h-6 w-6 text-green-500" />,
+  'resource-door-to-door': <Users className="h-6 w-6 text-purple-500" />,
   'resource-sos-leiria': <HandHelping className="h-6 w-6 text-green-500" />,
   'resource-tempestades-sos': <Handshake className="h-6 w-6 text-green-500" />,
 }
