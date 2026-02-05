@@ -369,23 +369,13 @@ export default function Home() {
       {/* ================================================================== */}
       <div className="fixed top-0 left-0 right-0 bg-red-600 text-white z-[60] shadow-lg">
         <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
-          <span className="text-sm font-medium hidden sm:block">Linha de Emergência</span>
-          <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-end">
-            <a
+          <a
               href={`tel:${c.contact.mobile}`}
               className="inline-flex items-center gap-2 bg-white text-red-600 font-bold px-4 py-1.5 rounded-full text-sm hover:bg-red-50 transition-colors"
             >
               <PhoneCall className="h-4 w-4" />
-              927 589 981
+              <span className="hidden sm:inline">Ligar Junta:</span> 927 589 981
             </a>
-            <a
-              href={`tel:${c.contact.phone}`}
-              className="hidden sm:inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 font-medium px-4 py-1.5 rounded-full text-sm transition-colors"
-            >
-              <Phone className="h-4 w-4" />
-              244 861 144
-            </a>
-          </div>
         </div>
       </div>
 
@@ -492,13 +482,15 @@ export default function Home() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             <a
-              href={`tel:${c.contact.mobile}`}
-              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-red-200 hover:border-red-400 hover:shadow-lg transition-all"
+              href="https://chat.whatsapp.com/FisY199oJlgB3umsP5tfoG"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-green-200 hover:border-green-400 hover:shadow-lg transition-all"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
-                <PhoneCall className="h-6 w-6 text-red-600" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                <MessageCircle className="h-6 w-6 text-green-600" />
               </div>
-              <span className="font-bold text-slate-800 text-sm text-center">Ligar Agora</span>
+              <span className="font-bold text-slate-800 text-sm text-center">Grupo WhatsApp</span>
             </a>
             <button
               onClick={() => scrollTo('recursos')}
@@ -875,16 +867,16 @@ export default function Home() {
 
                 {/* Right: contact methods */}
                 <div className="space-y-3">
-                  <a
-                    href={`tel:${c.contact.phone}`}
-                    className="flex items-center gap-3 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors px-5 py-3 border border-slate-200"
+                  <div
+                    className="flex items-center gap-3 rounded-xl bg-slate-100 px-5 py-3 border border-slate-200 opacity-60"
                   >
-                    <Phone className="h-5 w-5 text-green-600" />
+                    <Phone className="h-5 w-5 text-slate-400" />
                     <div>
                       <p className="text-xs text-slate-400 font-medium">Telefone fixo</p>
-                      <p className="text-sm text-slate-700 font-semibold">244 861 144</p>
+                      <p className="text-sm text-slate-500 font-semibold line-through">244 861 144</p>
+                      <p className="text-xs text-red-500 font-medium">Inoperacional</p>
                     </div>
-                  </a>
+                  </div>
                   <a
                     href={`tel:${c.contact.mobile}`}
                     className="flex items-center gap-3 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors px-5 py-3 border border-slate-200"
