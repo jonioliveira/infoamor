@@ -113,12 +113,15 @@ const serviceIcons: Record<string, React.ReactNode> = {
   'service-waste': <Trash2 className="h-6 w-6 text-green-600" />,
   'service-mail': <Mail className="h-6 w-6 text-green-600" />,
   'service-pharmacy': <HeartPlus className="h-6 w-6 text-green-600" />,
+  'service-pensions': <CreditCard className="h-6 w-6 text-orange-500" />,
 }
 
 const resourceIcons: Record<string, React.ReactNode> = {
   'resource-food': <Utensils className="h-6 w-6 text-orange-500" />,
   'resource-shower': <ShowerHead className="h-6 w-6 text-sky-500" />,
   'resource-debris': <Hammer className="h-6 w-6 text-stone-500" />,
+  'resource-tarpaulin': <Package className="h-6 w-6 text-blue-600" />,
+  'resource-tiles': <Building2 className="h-6 w-6 text-amber-600" />,
   'resource-internet': <Wifi className="h-6 w-6 text-blue-500" />,
   'resource-whatsapp': <MessageCircle className="h-6 w-6 text-green-500" />,
   'resource-door-to-door': <Users className="h-6 w-6 text-purple-500" />,
@@ -742,6 +745,7 @@ export default function Home() {
         <section className="py-14 md:py-20 bg-white">
           <div className="max-w-6xl mx-auto px-5 md:px-10">
             <SectionHeader id="transporte" icon={<Car className="h-5 w-5" />} title="Transporte" />
+            <div className="space-y-5">
             {c.transport.map(t => (
               <div
                 key={t.id}
@@ -773,6 +777,7 @@ export default function Home() {
                 </div>
               </div>
             ))}
+            </div>
           </div>
         </section>
 

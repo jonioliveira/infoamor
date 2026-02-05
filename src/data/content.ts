@@ -135,6 +135,18 @@ export const siteContent: SiteContent = {
       title: 'Declare os seus estragos',
       description: 'Preencha as declarações de prejuízos agrícolas, empresariais e em habitações com a maior brevidade possível.',
     },
+    {
+      id: 'alert-internet-junta',
+      level: 'warning',
+      title: 'Internet limitada na Junta',
+      description: 'De momento, temos internet muito limitada na Junta de Freguesia, o que não nos vai permitir atender todos os fregueses com a rapidez que gostaríamos.',
+    },
+    {
+      id: 'alert-roads',
+      level: 'info',
+      title: 'Estado dos acessos',
+      description: 'A17 pelo Campo: Fechado. Barreiros–Ponta da Pedra: Fechado. Monte Real (Rua da Base Aérea): Aberto. Leiria (Barreiros–Gândara): Aberto (cuidado com água do rio). Marinha Grande (Casalito, Casal Novo, Coucinheira): Aberto.',
+    },
   ],
 
   serviceStatus: [
@@ -151,7 +163,9 @@ export const siteContent: SiteContent = {
       status: 'partial',
       statusLabel: 'Parcial',
       description:
-        'Fornecimento parcialmente reposto. Algumas zonas ainda sem energia. Consulte a E-Redes para atualizações.',
+        'Falhas de abastecimento na zona das Barradas, Brejieira e Toco. Estão a tentar restabelecer estas ligações nas próximas horas. Pode carregar o telemóvel na Junta.',
+      link: 'https://balcaodigital.e-redes.pt/home/risky',
+      linkLabel: 'Reportar cabos perigosos →',
     },
     {
       id: 'service-telecom',
@@ -172,7 +186,7 @@ export const siteContent: SiteContent = {
       name: 'Escolas',
       status: 'operational',
       statusLabel: 'Operacional',
-      description: 'Todas as escolas e jardins de infância estão abertos.',
+      description: 'Todas as escolas continuam abertas. Estamos a proceder às restantes reparações o mais rapidamente possível.',
       link: 'https://aemarrazes.com/pt/ultimas/estabelecimentos-de-educacao-e-ensino-do-agrupamento-com-condicoes-de-funcionamento-informacao-de-reabertura-atualizado-em-04-02-2026-15-54h-',
       linkLabel: 'Ver informação do Agrupamento →',
     },
@@ -187,9 +201,9 @@ export const siteContent: SiteContent = {
     {
       id: 'service-mail',
       name: 'Correio',
-      status: 'outage',
-      statusLabel: 'Inoperacional',
-      description: 'Serviço de correio não disponível.',
+      status: 'partial',
+      statusLabel: 'Parcial',
+      description: 'Apenas entrega de cartas registadas e encomendas. Não se efetuam envios.',
     },
     {
       id: 'service-pharmacy',
@@ -198,6 +212,14 @@ export const siteContent: SiteContent = {
       statusLabel: 'Operacional',
       description:
         'Os serviços de farmácia estão operacionais. Apesar de com alguns problemas informáticos e dificuldade no uso de cartões de multibanco.',
+    },
+    {
+      id: 'service-pensions',
+      name: 'Vales e reformas',
+      status: 'outage',
+      statusLabel: 'Indisponível',
+      description:
+        'Não é possível efetuar o pagamento de vales e reformas na Junta de Freguesia. Por favor, dirijam-se a Leiria.',
     },
   ],
 
@@ -229,14 +251,25 @@ export const siteContent: SiteContent = {
     },
     {
       id: 'resource-debris',
-      title: 'Entulho, telhas e fibrocimento',
-      description: 'Depositar no campo de futebol do Casalito.',
+      title: 'Entulho, telhas, fibrocimento e verdes',
+      description: 'Depositar no campo de futebol do Casalito. O espaço está dividido conforme o tipo de material.',
       warning: 'Não depositar junto ao estaleiro da Junta (Marinheira).',
+    },
+    {
+      id: 'resource-tarpaulin',
+      title: 'Lonas',
+      description: 'Pode requisitar lona na Junta de Freguesia (traga as medidas) ou recolher no Pavilhão dos Pousos.',
+      warning: 'Apenas se entregam lonas para cobrir habitações primárias.',
+    },
+    {
+      id: 'resource-tiles',
+      title: 'Telhas e material de construção',
+      description: 'Está a ser criado um depósito no Mercado do Falcão (Marrazes). Até lá, podem deslocar-se ao Estádio Municipal — levem um exemplar da telha e as quantidades necessárias. Para doações, estamos a aceitar na Junta.',
     },
     {
       id: 'resource-internet',
       title: 'Internet e carregamento',
-      description: 'Ponto de acesso Wi-Fi e posto de carregamento de telemóvel disponíveis na Junta de Freguesia.',
+      description: 'Ligação wireless disponível na Junta de Freguesia, em rede aberta. Posto de carregamento de telemóvel também disponível.',
     },
     {
       id: 'resource-whatsapp',
@@ -303,39 +336,48 @@ export const siteContent: SiteContent = {
       details: ['Até 20€ por viagem', 'Máximo de 4 viagens por utilizador'],
       period: '3 a 15 de Fevereiro',
     },
+    {
+      id: 'transport-bus',
+      provider: 'Transportes públicos',
+      title: 'Rotas adaptadas',
+      description: 'Existem adaptações às rotas habituais devido aos estragos. As rotas habituais serão repostas assim que os autocarros consigam passar.',
+      details: ['Sem informação sobre paragens temporárias'],
+      period: 'Até restabelecimento',
+    },
   ],
 
   administrative: [
     {
-      id: 'admin-survey',
-      title: 'Inquérito de Danos em Propriedades',
-      description: 'Preencha o inquérito oficial para reportar danos causados pela tempestade na sua propriedade.',
-      link: 'https://survey123.arcgis.com/share/ea5bef31fc9248499869f245c5af2624',
-      linkLabel: 'Preencher inquérito →',
-    },
-    {
-      id: 'admin-agriculture',
-      title: 'Declaração de estragos agrícolas',
+      id: 'admin-support',
+      title: 'Pedidos de apoio — Particulares',
       description:
-        'A CCDR Centro disponibiliza plataforma para declaração de prejuízos agrícolas causados pelas tempestades. Agricultores da região Centro devem proceder ao registo com a maior brevidade possível.',
-      link: 'https://www.ccdrc.pt/pt/ccdr-centro-disponibiliza-plataforma-para-declaracao-de-prejuizos-agricolas-causados-pelas-tempestades/',
-      linkLabel: 'Aceder à plataforma CCDR →',
-    },
-    {
-      id: 'admin-business',
-      title: 'Declaração de estragos — Empresas e Indústrias',
-      description:
-        'Preencha o formulário de declaração de estragos causados pelas intempéries para que as entidades municipais possam agilizar os apoios necessários. A colaboração de todos é fundamental para processos de apoio mais rápidos e eficazes.',
-      link: 'https://arcg.is/1TGfb43',
-      linkLabel: 'Preencher formulário →',
+        'Plataforma da CCDR Centro para pedidos de apoio por particulares.',
+      link: 'https://sigecandidaturas.ccdrc.pt/',
+      linkLabel: 'Aceder à plataforma →',
     },
     {
       id: 'admin-housing',
-      title: 'Declaração de prejuízos particulares — Habitação',
+      title: 'Declaração de danos — Particulares',
       description:
-        'Plataforma da CCDR Centro para declaração de prejuízos em habitações particulares causados pelas tempestades.',
-      link: 'https://sigecandidaturas.ccdrc.pt/Habitacao/HabSimplicado_formulario.aspx',
+        'Formulário para declaração de prejuízos em habitações particulares causados pelas tempestades.',
+      link: 'https://shorturl.at/febPL',
       linkLabel: 'Preencher formulário →',
+    },
+    {
+      id: 'admin-business',
+      title: 'Declaração de danos — Empresas',
+      description:
+        'Formulário para declaração de estragos causados pelas intempéries em empresas e indústrias.',
+      link: 'https://shorturl.at/4q1yC',
+      linkLabel: 'Preencher formulário →',
+    },
+    {
+      id: 'admin-agriculture',
+      title: 'Declaração de danos — Agrícolas',
+      description:
+        'Plataforma da CCDR Centro para declaração de prejuízos agrícolas. Agricultores devem proceder ao registo com a maior brevidade.',
+      link: 'https://pdp25.ccdrc.pt/pdp_nologin.php',
+      linkLabel: 'Aceder à plataforma →',
     },
     {
       id: 'admin-caderneta',
@@ -365,7 +407,7 @@ export const siteContent: SiteContent = {
     mobile: '927589981',
     email: 'geral@jf-amor.pt',
     facebook: 'https://www.facebook.com/freguesiadeamor.junta',
-    website: 'http://jf-amor.pt',
+    website: 'https://infoamor.org',
     message: 'Para mais informações ou assistência, dirija-se à Junta de Freguesia.',
   },
 }
