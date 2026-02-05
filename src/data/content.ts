@@ -220,6 +220,7 @@ export const siteContent: SiteContent = {
       title: 'Banho Quente',
       description: 'Vários locais na região com banhos quentes disponíveis para a população afetada.',
       locations: [
+        'CRC 22 Junho (Amor)',
         'Leroy Merlin (Leiria)',
         'Junta de Freguesia dos Parceiros',
         'Pavilhão Desportivo do Souto da Carpalhosa',
@@ -333,6 +334,14 @@ export const siteContent: SiteContent = {
       description:
         'Preencha o formulário de declaração de estragos causados pelas intempéries para que as entidades municipais possam agilizar os apoios necessários. A colaboração de todos é fundamental para processos de apoio mais rápidos e eficazes.',
       link: 'https://arcg.is/1TGfb43',
+      linkLabel: 'Preencher formulário →',
+    },
+    {
+      id: 'admin-housing',
+      title: 'Declaração de prejuízos particulares — Habitação',
+      description:
+        'Plataforma da CCDR Centro para declaração de prejuízos em habitações particulares causados pelas tempestades.',
+      link: 'https://sigecandidaturas.ccdrc.pt/Habitacao/HabSimplicado_formulario.aspx',
       linkLabel: 'Preencher formulário →',
     },
     {
