@@ -9,6 +9,7 @@ import {
   Car,
   Clock,
   Cloud,
+  ShowerHead,
   CloudDrizzle,
   CloudFog,
   CloudLightning,
@@ -112,6 +113,7 @@ const serviceIcons: Record<string, React.ReactNode> = {
 
 const resourceIcons: Record<string, React.ReactNode> = {
   'resource-food': <Utensils className="h-6 w-6 text-orange-500" />,
+  'resource-shower': <ShowerHead className="h-6 w-6 text-sky-500" />,
   'resource-debris': <Hammer className="h-6 w-6 text-stone-500" />,
   'resource-internet': <Wifi className="h-6 w-6 text-blue-500" />,
   'resource-whatsapp': <MessageCircle className="h-6 w-6 text-green-500" />,
@@ -322,6 +324,8 @@ export default function Home() {
   const c = siteContent
   const [activeSection, setActiveSection] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showLocationsModal, setShowLocationsModal] = useState(false)
+  const [modalLocations, setModalLocations] = useState<{ title: string; locations: string[] } | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -487,11 +491,52 @@ export default function Home() {
                       <ExternalLink className="h-4 w-4" />
                     </a>
                   )}
+                  {r.locations && (
+                    <button
+                      onClick={() => {
+                        setModalLocations({ title: r.title, locations: r.locations! })
+                        setShowLocationsModal(true)
+                      }}
+                      className="mt-4 inline-flex items-center gap-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors shadow-sm"
+                    >
+                      Ver locais
+                      <MapPin className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
           </div>
         </section>
+
+        {/* Locations Modal */}
+        {showLocationsModal && modalLocations && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowLocationsModal(false)}>
+            <div className="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[80vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-5 border-b border-slate-100">
+                <h3 className="font-bold text-slate-900 text-lg font-[family-name:var(--font-space-grotesk)]">
+                  {modalLocations.title}
+                </h3>
+                <button
+                  onClick={() => setShowLocationsModal(false)}
+                  className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                >
+                  <X className="h-5 w-5 text-slate-500" />
+                </button>
+              </div>
+              <div className="p-5 overflow-y-auto max-h-[60vh]">
+                <ul className="space-y-3">
+                  {modalLocations.locations.map((loc, i) => (
+                    <li key={i} className="flex items-start gap-3 text-slate-700">
+                      <MapPin className="h-5 w-5 text-sky-500 shrink-0 mt-0.5" />
+                      <span>{loc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* -------------------------------------------------------------- */}
         {/* COMMUNITY CLEANUP EVENT                                          */}

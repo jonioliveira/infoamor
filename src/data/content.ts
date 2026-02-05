@@ -27,6 +27,7 @@ export interface Resource {
   warning?: string
   link?: string
   linkLabel?: string
+  locations?: string[]
 }
 
 export interface MeetingPoint {
@@ -213,6 +214,24 @@ export const siteContent: SiteContent = {
       title: 'Alimentação',
       description:
         'Refeições disponíveis na Junta de Freguesia e no Estádio Municipal (Porta 10). Doações de alimentos aceites na Junta.',
+    },
+    {
+      id: 'resource-shower',
+      title: 'Banho Quente',
+      description: 'Vários locais na região com banhos quentes disponíveis para a população afetada.',
+      locations: [
+        'Leroy Merlin (Leiria)',
+        'Junta de Freguesia dos Parceiros',
+        'Pavilhão Desportivo do Souto da Carpalhosa',
+        'Campo de Futebol da Batalha',
+        'Piscinas Municipais de Porto de Mós',
+        'Piscinas Municipais de Alcobaça',
+        'Colégio São Miguel (Fátima)',
+        'Base Aérea nº 5 – Monte Real (Pavilhão)',
+        'Pavilhão Desportivo de Santa Eufémia',
+        'União Desportiva de Santa Catarina da Serra',
+        'ADCCMI da Cruz da Areia',
+      ],
     },
     {
       id: 'resource-debris',
