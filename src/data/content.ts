@@ -106,8 +106,8 @@ export const siteContent: SiteContent = {
     { id: 'limpeza', label: 'Limpeza' },
     { id: 'transporte', label: 'Transporte' },
     { id: 'declaracoes', label: 'Apoios' },
-    { id: 'meteo', label: 'Meteorologia' },
     { id: 'contactos', label: 'Contactos' },
+    { id: 'meteo', label: 'Meteo' },
   ],
 
   alerts: [

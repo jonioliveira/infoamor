@@ -7,9 +7,13 @@ import {
   Building2,
   CalendarDays,
   Car,
+  ChevronDown,
+  ChevronUp,
   Clock,
   Cloud,
+  PhoneCall,
   ShowerHead,
+  Waves,
   CloudDrizzle,
   CloudFog,
   CloudLightning,
@@ -326,6 +330,11 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showLocationsModal, setShowLocationsModal] = useState(false)
   const [modalLocations, setModalLocations] = useState<{ title: string; locations: string[] } | null>(null)
+  const [showAllAlerts, setShowAllAlerts] = useState(false)
+
+  // Separate critical alerts (danger) from others
+  const criticalAlerts = c.alerts.filter(a => a.level === 'danger')
+  const otherAlerts = c.alerts.filter(a => a.level !== 'danger')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -347,7 +356,7 @@ export default function Home() {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id)
     if (el) {
-      const top = el.offsetTop - 80
+      const top = el.offsetTop - 120 // Account for emergency bar + nav
       window.scrollTo({ top, behavior: 'smooth' })
     }
     setMobileMenuOpen(false)
@@ -356,17 +365,48 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* ================================================================== */}
+      {/* EMERGENCY BAR - Always visible                                      */}
+      {/* ================================================================== */}
+      <div className="fixed top-0 left-0 right-0 bg-red-600 text-white z-[60] shadow-lg">
+        <div className="max-w-6xl mx-auto px-4 py-2 flex items-center justify-between">
+          <span className="text-sm font-medium hidden sm:block">Linha de Emergência</span>
+          <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-end">
+            <a
+              href={`tel:${c.contact.mobile}`}
+              className="inline-flex items-center gap-2 bg-white text-red-600 font-bold px-4 py-1.5 rounded-full text-sm hover:bg-red-50 transition-colors"
+            >
+              <PhoneCall className="h-4 w-4" />
+              927 589 981
+            </a>
+            <a
+              href={`tel:${c.contact.phone}`}
+              className="hidden sm:inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 font-medium px-4 py-1.5 rounded-full text-sm transition-colors"
+            >
+              <Phone className="h-4 w-4" />
+              244 861 144
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ================================================================== */}
       {/* NAVIGATION                                                         */}
       {/* ================================================================== */}
-      <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-slate-200/60 z-50 shadow-sm">
+      <nav className="fixed top-[44px] left-0 right-0 bg-white/80 backdrop-blur-md border-b border-slate-200/60 z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-5 md:px-10">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-14">
             <span className="text-lg font-bold text-slate-900 font-[family-name:var(--font-space-grotesk)] tracking-tight">
               {c.meta.title}
             </span>
-            {/* Desktop nav */}
+            {/* Desktop nav - simplified */}
             <div className="hidden md:flex items-center gap-1">
-              {c.navSections.map(s => (
+              <button
+                onClick={() => scrollTo('ajuda')}
+                className={`px-3.5 py-2 rounded-lg text-sm font-bold transition-all duration-200 bg-red-50 text-red-700 hover:bg-red-100`}
+              >
+                Preciso de Ajuda
+              </button>
+              {c.navSections.slice(0, 4).map(s => (
                 <button
                   key={s.id}
                   onClick={() => scrollTo(s.id)}
@@ -379,6 +419,16 @@ export default function Home() {
                   {s.label}
                 </button>
               ))}
+              <button
+                onClick={() => scrollTo('contactos')}
+                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  activeSection === 'contactos'
+                    ? 'text-green-700 bg-green-50 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+                }`}
+              >
+                Contactos
+              </button>
             </div>
             {/* Mobile menu */}
             <button
@@ -391,6 +441,12 @@ export default function Home() {
         </div>
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur-md px-5 py-3 space-y-1">
+            <button
+              onClick={() => scrollTo('ajuda')}
+              className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-bold text-red-700 bg-red-50"
+            >
+              Preciso de Ajuda
+            </button>
             {c.navSections.map(s => (
               <button
                 key={s.id}
@@ -409,31 +465,112 @@ export default function Home() {
       {/* ================================================================== */}
       {/* HERO HEADER                                                        */}
       {/* ================================================================== */}
-      <header className="pt-16 bg-gradient-to-br from-green-800 via-green-900 to-emerald-950 text-white relative overflow-hidden">
+      <header className="pt-[102px] bg-gradient-to-br from-green-800 via-green-900 to-emerald-950 text-white relative overflow-hidden">
         {/* Decorative circles */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-green-700/30 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-600/20 rounded-full translate-y-1/2 -translate-x-1/4 blur-2xl" />
 
-        <div className="relative max-w-6xl mx-auto px-5 md:px-10 py-16 md:py-20 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)]">
+        <div className="relative max-w-6xl mx-auto px-5 md:px-10 py-12 md:py-16 text-center">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-[family-name:var(--font-space-grotesk)]">
             {c.meta.title}
           </h1>
-          <p className="text-green-200 mt-4 text-lg md:text-xl max-w-2xl mx-auto">{c.meta.subtitle}</p>
-          <div className="mt-6 inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-5 py-2 text-green-100 text-sm">
-            <Clock className="h-4 w-4" />
-            Última atualização: {c.meta.lastUpdated}
+          <p className="text-green-200 mt-3 text-base md:text-lg max-w-2xl mx-auto">{c.meta.subtitle}</p>
+          <div className="mt-4 inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 text-green-100 text-xs">
+            <Clock className="h-3.5 w-3.5" />
+            Atualizado: {c.meta.lastUpdated}
           </div>
         </div>
       </header>
 
       {/* ================================================================== */}
-      {/* ALERT BANNERS                                                      */}
+      {/* QUICK ACTIONS - "Preciso de Ajuda"                                  */}
       {/* ================================================================== */}
-      <div className="max-w-6xl mx-auto px-5 md:px-10 -mt-6 relative z-10">
+      <section id="ajuda" className="bg-gradient-to-b from-slate-100 to-slate-50 py-8 border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-5 md:px-10">
+          <h2 className="text-center text-lg font-bold text-slate-700 mb-5 font-[family-name:var(--font-space-grotesk)]">
+            O que precisa?
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <a
+              href={`tel:${c.contact.mobile}`}
+              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-red-200 hover:border-red-400 hover:shadow-lg transition-all"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+                <PhoneCall className="h-6 w-6 text-red-600" />
+              </div>
+              <span className="font-bold text-slate-800 text-sm text-center">Ligar Agora</span>
+            </a>
+            <button
+              onClick={() => scrollTo('recursos')}
+              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-orange-200 hover:border-orange-400 hover:shadow-lg transition-all"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
+                <Utensils className="h-6 w-6 text-orange-600" />
+              </div>
+              <span className="font-bold text-slate-800 text-sm text-center">Alimentação</span>
+            </button>
+            <button
+              onClick={() => {
+                const showerResource = c.resources.find(r => r.id === 'resource-shower')
+                if (showerResource?.locations) {
+                  setModalLocations({ title: showerResource.title, locations: showerResource.locations })
+                  setShowLocationsModal(true)
+                }
+              }}
+              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-sky-200 hover:border-sky-400 hover:shadow-lg transition-all"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-100">
+                <Waves className="h-6 w-6 text-sky-600" />
+              </div>
+              <span className="font-bold text-slate-800 text-sm text-center">Banho / Abrigo</span>
+            </button>
+            <button
+              onClick={() => scrollTo('declaracoes')}
+              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-purple-200 hover:border-purple-400 hover:shadow-lg transition-all"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
+                <FileText className="h-6 w-6 text-purple-600" />
+              </div>
+              <span className="font-bold text-slate-800 text-sm text-center">Reportar Danos</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================== */}
+      {/* ALERT BANNERS - Critical first, others collapsible                  */}
+      {/* ================================================================== */}
+      <div className="max-w-6xl mx-auto px-5 md:px-10 py-6">
         <div className="space-y-3">
-          {c.alerts.map(alert => (
+          {/* Always show critical (danger) alerts */}
+          {criticalAlerts.map(alert => (
             <AlertBanner key={alert.id} alert={alert} />
           ))}
+
+          {/* Other alerts - collapsible */}
+          {otherAlerts.length > 0 && (
+            <>
+              {showAllAlerts && otherAlerts.map(alert => (
+                <AlertBanner key={alert.id} alert={alert} />
+              ))}
+              <button
+                onClick={() => setShowAllAlerts(!showAllAlerts)}
+                className="w-full flex items-center justify-center gap-2 py-3 text-sm font-medium text-slate-500 hover:text-slate-700 transition-colors"
+              >
+                {showAllAlerts ? (
+                  <>
+                    <ChevronUp className="h-4 w-4" />
+                    Ocultar {otherAlerts.length} aviso{otherAlerts.length > 1 ? 's' : ''}
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown className="h-4 w-4" />
+                    Ver mais {otherAlerts.length} aviso{otherAlerts.length > 1 ? 's' : ''}
+                  </>
+                )}
+              </button>
+            </>
+          )}
         </div>
       </div>
 
@@ -716,19 +853,9 @@ export default function Home() {
         </section>
 
         {/* -------------------------------------------------------------- */}
-        {/* WEATHER                                                          */}
-        {/* -------------------------------------------------------------- */}
-        <section className="py-14 md:py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-5 md:px-10">
-            <SectionHeader id="meteo" icon={<CloudSun className="h-5 w-5" />} title="Meteorologia" />
-            <WeatherForecast />
-          </div>
-        </section>
-
-        {/* -------------------------------------------------------------- */}
         {/* CONTACT                                                          */}
         {/* -------------------------------------------------------------- */}
-        <section className="py-14 md:py-20 bg-slate-50">
+        <section className="py-14 md:py-20 bg-white">
           <div className="max-w-6xl mx-auto px-5 md:px-10">
             <SectionHeader id="contactos" icon={<Building2 className="h-5 w-5" />} title="Contactos" />
             <div className="bg-white rounded-2xl shadow-md border border-slate-100 p-8 md:p-10">
@@ -801,6 +928,16 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* -------------------------------------------------------------- */}
+        {/* WEATHER - Less prominent, at the end                             */}
+        {/* -------------------------------------------------------------- */}
+        <section className="py-10 md:py-14 bg-slate-50">
+          <div className="max-w-6xl mx-auto px-5 md:px-10">
+            <SectionHeader id="meteo" icon={<CloudSun className="h-5 w-5" />} title="Meteorologia" />
+            <WeatherForecast />
           </div>
         </section>
       </main>
