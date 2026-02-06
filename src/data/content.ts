@@ -18,6 +18,7 @@ export interface ServiceStatus {
   warning?: string
   link?: string
   linkLabel?: string
+  links?: { url: string; label: string }[]
 }
 
 export interface Resource {
@@ -169,6 +170,12 @@ export const siteContent: SiteContent = {
       warning: 'Cuidado com cabos caídos — não toque, podem ter energia.',
       link: 'https://balcaodigital.e-redes.pt/home/risky',
       linkLabel: 'Reportar cabos perigosos →',
+      links: [
+        {
+          url: 'https://balcaodigital.e-redes.pt/anomalies/without-light',
+          label: 'Reportar falta de luz em casa →',
+        },
+      ],
     },
     {
       id: 'service-telecom',

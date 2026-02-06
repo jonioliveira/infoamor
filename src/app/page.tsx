@@ -194,6 +194,18 @@ function ServiceCard({ service }: { service: ServiceStatus }) {
           <ExternalLink className="h-3.5 w-3.5" />
         </a>
       )}
+      {service.links?.map(l => (
+        <a
+          key={l.url}
+          href={l.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-green-700 hover:text-green-800 transition-colors"
+        >
+          {l.label}
+          <ExternalLink className="h-3.5 w-3.5" />
+        </a>
+      ))}
     </div>
   )
 }
