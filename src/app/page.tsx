@@ -31,7 +31,7 @@ import {
   HandHelping,
   Handshake,
   HeartPlus,
-  HelpCircle,
+  Search,
   Info,
   Mail,
   MapPin,
@@ -209,6 +209,40 @@ function SectionHeader({ icon, title, id }: { icon: React.ReactNode; title: stri
   )
 }
 
+function CollapsibleSectionHeader({
+  icon,
+  title,
+  id,
+  isCollapsed,
+  onToggle
+}: {
+  icon: React.ReactNode
+  title: string
+  id?: string
+  isCollapsed: boolean
+  onToggle: () => void
+}) {
+  return (
+    <button
+      className="flex items-center justify-between w-full mb-8 group"
+      id={id}
+      onClick={onToggle}
+      aria-expanded={!isCollapsed}
+    >
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-700 text-white">{icon}</div>
+        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 font-[family-name:var(--font-space-grotesk)]">
+          {title}
+        </h2>
+      </div>
+      <div className="flex items-center gap-2 text-slate-500 group-hover:text-slate-700 transition-colors">
+        <span className="text-sm font-medium">{isCollapsed ? 'Mostrar' : 'Ocultar'}</span>
+        <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${isCollapsed ? '' : 'rotate-180'}`} />
+      </div>
+    </button>
+  )
+}
+
 // =============================================================================
 // Weather
 // =============================================================================
@@ -341,21 +375,30 @@ export default function Home() {
   const [modalLocations, setModalLocations] = useState<{ title: string; locations: string[] } | null>(null)
   const [showAllAlerts, setShowAllAlerts] = useState(false)
   const [showVolunteerModal, setShowVolunteerModal] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [showSearch, setShowSearch] = useState(false)
+  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set(['meteo']))
 
   // Separate critical alerts (danger) from others
   const criticalAlerts = c.alerts.filter(a => a.level === 'danger')
   const otherAlerts = c.alerts.filter(a => a.level !== 'danger')
 
-  // Close modals with ESC key
+  // Keyboard shortcuts (ESC to close, Ctrl+K to search)
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
+    const handleKeyboard = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setShowLocationsModal(false)
         setShowVolunteerModal(false)
+        setShowSearch(false)
+        setSearchQuery('')
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault()
+        setShowSearch(true)
       }
     }
-    window.addEventListener('keydown', handleEsc)
-    return () => window.removeEventListener('keydown', handleEsc)
+    window.addEventListener('keydown', handleKeyboard)
+    return () => window.removeEventListener('keydown', handleKeyboard)
   }, [])
 
   useEffect(() => {
@@ -384,6 +427,38 @@ export default function Home() {
     setMobileMenuOpen(false)
   }
 
+  const toggleSection = (id: string) => {
+    setCollapsedSections(prev => {
+      const next = new Set(prev)
+      if (next.has(id)) {
+        next.delete(id)
+      } else {
+        next.add(id)
+      }
+      return next
+    })
+  }
+
+  // Search functionality
+  const searchResults = searchQuery.length > 1 ? {
+    alerts: c.alerts.filter(a =>
+      a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      a.description.toLowerCase().includes(searchQuery.toLowerCase())
+    ),
+    services: c.serviceStatus.filter(s =>
+      s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.description.toLowerCase().includes(searchQuery.toLowerCase())
+    ),
+    resources: c.resources.filter(r =>
+      r.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.description.toLowerCase().includes(searchQuery.toLowerCase())
+    ),
+    admin: c.administrative.filter(a =>
+      a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      a.description.toLowerCase().includes(searchQuery.toLowerCase())
+    ),
+  } : null
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Skip link for accessibility */}
@@ -410,6 +485,84 @@ export default function Home() {
       </div>
 
       {/* ================================================================== */}
+      {/* SEARCH MODAL                                                        */}
+      {/* ================================================================== */}
+      {showSearch && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[70] flex items-start justify-center pt-20 px-4" onClick={() => { setShowSearch(false); setSearchQuery('') }}>
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center gap-3 p-4 border-b border-slate-200">
+              <Search className="h-5 w-5 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Pesquisar... (água, declaração, banho...)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="flex-1 text-lg outline-none"
+                autoFocus
+              />
+              <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-slate-400 bg-slate-100 rounded">ESC</kbd>
+            </div>
+            {searchResults && (
+              <div className="max-h-[60vh] overflow-y-auto p-2">
+                {searchResults.alerts.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-xs font-bold text-slate-400 uppercase px-3 py-2">Alertas</p>
+                    {searchResults.alerts.map(a => (
+                      <button key={a.id} onClick={() => { setShowSearch(false); setSearchQuery(''); scrollTo('ajuda') }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors">
+                        <p className="font-medium text-slate-900">{a.title}</p>
+                        <p className="text-sm text-slate-500 truncate">{a.description}</p>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {searchResults.services.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-xs font-bold text-slate-400 uppercase px-3 py-2">Serviços</p>
+                    {searchResults.services.map(s => (
+                      <button key={s.id} onClick={() => { setShowSearch(false); setSearchQuery(''); scrollTo('servicos') }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors">
+                        <p className="font-medium text-slate-900">{s.name}</p>
+                        <p className="text-sm text-slate-500 truncate">{s.description}</p>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {searchResults.resources.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-xs font-bold text-slate-400 uppercase px-3 py-2">Recursos</p>
+                    {searchResults.resources.map(r => (
+                      <button key={r.id} onClick={() => { setShowSearch(false); setSearchQuery(''); scrollTo('recursos') }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors">
+                        <p className="font-medium text-slate-900">{r.title}</p>
+                        <p className="text-sm text-slate-500 truncate">{r.description}</p>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {searchResults.admin.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-xs font-bold text-slate-400 uppercase px-3 py-2">Apoios e Declarações</p>
+                    {searchResults.admin.map(a => (
+                      <button key={a.id} onClick={() => { setShowSearch(false); setSearchQuery(''); scrollTo('declaracoes') }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors">
+                        <p className="font-medium text-slate-900">{a.title}</p>
+                        <p className="text-sm text-slate-500 truncate">{a.description}</p>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {searchResults.alerts.length === 0 && searchResults.services.length === 0 && searchResults.resources.length === 0 && searchResults.admin.length === 0 && (
+                  <p className="text-center text-slate-500 py-8">Nenhum resultado para &quot;{searchQuery}&quot;</p>
+                )}
+              </div>
+            )}
+            {!searchResults && (
+              <div className="p-6 text-center text-slate-400">
+                <p>Escreva pelo menos 2 caracteres para pesquisar</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ================================================================== */}
       {/* NAVIGATION                                                         */}
       {/* ================================================================== */}
       <nav className="fixed top-[44px] left-0 right-0 bg-white/80 backdrop-blur-md border-b border-slate-200/60 z-50 shadow-sm">
@@ -420,6 +573,15 @@ export default function Home() {
             </span>
             {/* Desktop nav - simplified */}
             <div className="hidden md:flex items-center gap-1">
+              <button
+                onClick={() => setShowSearch(true)}
+                className="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-all duration-200 flex items-center gap-1.5"
+                aria-label="Pesquisar (Ctrl+K)"
+              >
+                <Search className="h-4 w-4" />
+                <span className="hidden lg:inline">Pesquisar</span>
+                <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-medium text-slate-400 bg-slate-100 rounded">⌘K</kbd>
+              </button>
               <button
                 onClick={() => scrollTo('ajuda')}
                 className={`px-3.5 py-2 rounded-lg text-sm font-bold transition-all duration-200 bg-red-50 text-red-700 hover:bg-red-100`}
@@ -440,15 +602,24 @@ export default function Home() {
                 </button>
               ))}
             </div>
-            {/* Mobile menu */}
-            <button
-              className="md:hidden p-2 -mr-2 text-slate-600 hover:bg-slate-100 rounded-lg"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            {/* Mobile search + menu */}
+            <div className="flex items-center gap-1 md:hidden">
+              <button
+                className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+                onClick={() => setShowSearch(true)}
+                aria-label="Pesquisar"
+              >
+                <Search className="h-5 w-5" />
+              </button>
+              <button
+                className="p-2 -mr-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
           </div>
         </div>
         {mobileMenuOpen && (
@@ -893,11 +1064,18 @@ export default function Home() {
         </section>
 
         {/* -------------------------------------------------------------- */}
-        {/* TRANSPORT                                                        */}
+        {/* TRANSPORT - collapsible                                           */}
         {/* -------------------------------------------------------------- */}
         <section className="py-14 md:py-20 bg-white">
           <div className="max-w-6xl mx-auto px-5 md:px-10">
-            <SectionHeader id="transporte" icon={<Car className="h-5 w-5" />} title="Transporte" />
+            <CollapsibleSectionHeader
+              id="transporte"
+              icon={<Car className="h-5 w-5" />}
+              title="Transporte"
+              isCollapsed={collapsedSections.has('transporte')}
+              onToggle={() => toggleSection('transporte')}
+            />
+            {!collapsedSections.has('transporte') && (
             <div className="space-y-5">
             {c.transport.map(t => (
               <div
@@ -931,6 +1109,7 @@ export default function Home() {
               </div>
             ))}
             </div>
+            )}
           </div>
         </section>
 
@@ -1096,12 +1275,18 @@ export default function Home() {
         </section>
 
         {/* -------------------------------------------------------------- */}
-        {/* WEATHER - Less prominent, at the end                             */}
+        {/* WEATHER - Less prominent, at the end, collapsible                 */}
         {/* -------------------------------------------------------------- */}
         <section className="py-10 md:py-14 bg-slate-50">
           <div className="max-w-6xl mx-auto px-5 md:px-10">
-            <SectionHeader id="meteo" icon={<CloudSun className="h-5 w-5" />} title="Meteorologia" />
-            <WeatherForecast />
+            <CollapsibleSectionHeader
+              id="meteo"
+              icon={<CloudSun className="h-5 w-5" />}
+              title="Meteorologia"
+              isCollapsed={collapsedSections.has('meteo')}
+              onToggle={() => toggleSection('meteo')}
+            />
+            {!collapsedSections.has('meteo') && <WeatherForecast />}
           </div>
         </section>
       </main>

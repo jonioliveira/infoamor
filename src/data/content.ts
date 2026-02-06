@@ -116,20 +116,20 @@ export const siteContent: SiteContent = {
     {
       id: 'alert-marta',
       level: 'danger',
-      title: 'Tempestade Marta — Sábado, pior a partir da tarde',
-      description: 'Rajadas até 85-100 km/h de noroeste no litoral centro a partir da tarde. Chuva moderada a forte. Verifiquem as notícias antes de sair — não corram perigo!',
+      title: 'Tempestade Marta — Sexta a sábado até ao almoço',
+      description: 'Rajadas até 85-100 km/h de noroeste no litoral centro. Chuva moderada a forte. Verifiquem as notícias antes de sair — não corram perigo!',
+    },
+    {
+      id: 'alert-gandara',
+      level: 'danger',
+      title: 'Estrada da Gândara–Barreiros',
+      description: 'Abre e fecha conforme a chuva e altura da água. Verifique antes de passar.',
     },
     {
       id: 'alert-roads-info',
       level: 'info',
       title: 'Estado dos acessos',
       description: 'A17 pelo Campo: Fechado. Barreiros–Ponta da Pedra: Fechado. Monte Real (Rua da Base Aérea): Aberto. Marinha Grande (Casalito, Casal Novo, Coucinheira): Aberto.',
-    },
-    {
-      id: 'alert-cleanup',
-      level: 'danger',
-      title: 'Mudança de horário — Limpeza às 14h (não 9h)',
-      description: 'A ação de limpeza de sábado foi alterada para as 14h devido à tempestade Marta. Consulte os detalhes abaixo.',
     },
     {
       id: 'alert-materials',
@@ -308,7 +308,7 @@ export const siteContent: SiteContent = {
       id: 'community-event-1',
       title: 'Ação de Limpeza Comunitária',
       date: 'Sábado, 7 de Fevereiro',
-      time: '14h00',
+      time: '9h00',
       description: 'Junte-se a nós para limpar a freguesia. Encontre-se num dos pontos de concentração indicados.',
       meetingPoints: [
         { locality: 'Amor', location: 'Largo Padre Margalhau' },
