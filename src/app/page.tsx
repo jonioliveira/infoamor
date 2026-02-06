@@ -716,13 +716,52 @@ export default function Home() {
                 </button>
               </div>
               <div className="p-5 overflow-y-auto max-h-[70vh] space-y-4 text-sm">
-                {/* Aviso crítico */}
                 <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-                  <p className="font-bold text-red-800">⚠️ Verifiquem as notícias antes de sair — não corram perigo!</p>
-                  <p className="text-red-700 text-xs mt-1">Se houver cancelamento devido ao tempo, avisamos.</p>
+                  <p className="font-bold text-red-800 mb-2">⚠️ Atenção</p>
+                  <p className="text-red-700">Estamos sem comunicações no local. Se houver cancelamento devido ao tempo, avisamos. Verifiquem as notícias antes de sair — não corram perigo!</p>
                 </div>
 
-                {/* Pontos de encontro - PRIORIDADE */}
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">📍</span>
+                    <p className="text-slate-700"><strong>GPS Offline:</strong> Guardem nos Google Maps/GPS offline toda a área de Leiria, Marinha Grande e Pombal.</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">🧤</span>
+                    <p className="text-slate-700"><strong>Autoproteção:</strong> Luvas, calçado resistente que possa sujar/molhar, casacos impermeáveis.</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">🔧</span>
+                    <p className="text-slate-700"><strong>Equipamento útil:</strong> Pás, enxadas, vassouras grossas ou rodos (para juntar montes de lixo).</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">🚫</span>
+                    <p className="text-slate-700"><strong>Telhados:</strong> Não ambicionar reparar telhados sem experiência — os riscos são tremendos e não há seguros.</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">🍽️</span>
+                    <p className="text-slate-700"><strong>Refeições:</strong> Em Barreiros (Amor) há um restaurante a funcionar. Na Marinha Grande (~10km): McDonald&apos;s e Burger King.</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-xl">📦</span>
+                    <p className="text-slate-700"><strong>Donativos a trazer:</strong> Entregar apenas na Junta de Amor — poliuretano, produtos de limpeza, gasolina para geradores, alimentos não perecíveis, fraldas para bebés.</p>
+                  </div>
+                </div>
+
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                  <p className="font-bold text-slate-800 mb-2">🤝 Atitudes</p>
+                  <ul className="text-slate-600 space-y-1">
+                    <li>• Bom senso de autoproteção</li>
+                    <li>• Alegria e dinamismo para ver/procurar trabalho</li>
+                    <li>• Compreensão — estamos cansados, em condições precárias, mas a tentar</li>
+                  </ul>
+                </div>
+
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
                   <p className="font-bold text-amber-800 mb-3">📍 Pontos de encontro</p>
                   <div className="grid grid-cols-2 gap-2">
@@ -767,14 +806,6 @@ export default function Home() {
                       Casal Novo
                     </a>
                   </div>
-                </div>
-                {/* Info compacta */}
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2">
-                  <p className="text-slate-700"><strong>🧤 Trazer:</strong> Luvas, calçado resistente, casaco impermeável, pás, enxadas, vassouras</p>
-                  <p className="text-slate-700"><strong>📍 GPS:</strong> Guardar mapas offline de Leiria, Marinha Grande e Pombal</p>
-                  <p className="text-slate-700"><strong>🚫 Telhados:</strong> Não reparar sem experiência — riscos enormes</p>
-                  <p className="text-slate-700"><strong>🍽️ Comida:</strong> Restaurante em Barreiros ou McDonald&apos;s/Burger King na Marinha Grande</p>
-                  <p className="text-slate-700"><strong>📦 Donativos:</strong> Entregar na Junta — poliuretano, limpeza, gasolina, alimentos, fraldas</p>
                 </div>
 
                 <a
