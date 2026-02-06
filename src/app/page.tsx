@@ -274,7 +274,7 @@ function WeatherForecast() {
 
   if (error) {
     return (
-      <p className="text-sm text-slate-400 text-center py-8">Não foi possível carregar a previsão meteorológica.</p>
+      <p className="text-sm text-slate-500 text-center py-8">Não foi possível carregar a previsão meteorológica.</p>
     )
   }
 
@@ -346,6 +346,18 @@ export default function Home() {
   const criticalAlerts = c.alerts.filter(a => a.level === 'danger')
   const otherAlerts = c.alerts.filter(a => a.level !== 'danger')
 
+  // Close modals with ESC key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowLocationsModal(false)
+        setShowVolunteerModal(false)
+      }
+    }
+    window.addEventListener('keydown', handleEsc)
+    return () => window.removeEventListener('keydown', handleEsc)
+  }, [])
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY + 140
@@ -374,6 +386,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {/* Skip link for accessibility */}
+      <a
+        href="#ajuda"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[100] focus:bg-white focus:text-green-700 focus:px-4 focus:py-2 focus:font-bold"
+      >
+        Saltar para conteúdo principal
+      </a>
+
       {/* ================================================================== */}
       {/* EMERGENCY BAR - Always visible                                      */}
       {/* ================================================================== */}
@@ -659,15 +679,16 @@ export default function Home() {
 
         {/* Locations Modal */}
         {showLocationsModal && modalLocations && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowLocationsModal(false)}>
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowLocationsModal(false)} role="dialog" aria-modal="true" aria-labelledby="locations-modal-title">
             <div className="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[80vh] overflow-hidden" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between p-5 border-b border-slate-100">
-                <h3 className="font-bold text-slate-900 text-lg font-[family-name:var(--font-space-grotesk)]">
+                <h3 id="locations-modal-title" className="font-bold text-slate-900 text-lg font-[family-name:var(--font-space-grotesk)]">
                   {modalLocations.title}
                 </h3>
                 <button
                   onClick={() => setShowLocationsModal(false)}
                   className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                  aria-label="Fechar"
                 >
                   <X className="h-5 w-5 text-slate-500" />
                 </button>
@@ -688,15 +709,16 @@ export default function Home() {
 
         {/* Volunteer Modal */}
         {showVolunteerModal && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowVolunteerModal(false)}>
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowVolunteerModal(false)} role="dialog" aria-modal="true" aria-labelledby="volunteer-modal-title">
             <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] overflow-hidden" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-amber-50">
-                <h3 className="font-bold text-amber-900 text-lg font-[family-name:var(--font-space-grotesk)]">
+                <h3 id="volunteer-modal-title" className="font-bold text-amber-900 text-lg font-[family-name:var(--font-space-grotesk)]">
                   Notas aos Voluntários
                 </h3>
                 <button
                   onClick={() => setShowVolunteerModal(false)}
                   className="p-2 hover:bg-amber-100 rounded-lg transition-colors"
+                  aria-label="Fechar"
                 >
                   <X className="h-5 w-5 text-amber-700" />
                 </button>
@@ -935,11 +957,11 @@ export default function Home() {
 
                       {item.documents && (
                         <div className="mt-3 bg-slate-50 rounded-lg p-3 border border-slate-200">
-                          <p className="text-xs font-bold text-slate-700 mb-2">Documentos necessários:</p>
-                          <ul className="text-xs text-slate-600 space-y-1">
+                          <p className="text-sm font-bold text-slate-700 mb-2">Documentos necessários:</p>
+                          <ul className="text-sm text-slate-600 space-y-1">
                             {item.documents.map((doc, i) => (
                               <li key={i} className="flex items-start gap-2">
-                                <span className="text-slate-400">•</span>
+                                <span className="text-slate-500">•</span>
                                 {doc}
                               </li>
                             ))}
@@ -987,7 +1009,7 @@ export default function Home() {
                         </div>
                       )}
 
-                      {item.note && <p className="mt-3 text-xs text-slate-400 font-medium">{item.note}</p>}
+                      {item.note && <p className="mt-3 text-sm text-slate-500 font-medium">{item.note}</p>}
                     </div>
                   </div>
                 </div>
@@ -1009,7 +1031,7 @@ export default function Home() {
                   <h3 className="font-bold text-slate-900 text-xl mb-1 font-[family-name:var(--font-space-grotesk)]">
                     {c.contact.entity}
                   </h3>
-                  <p className="text-slate-400 font-medium mb-5">{c.contact.municipality}</p>
+                  <p className="text-slate-500 font-medium mb-5">{c.contact.municipality}</p>
                   <div className="flex items-start gap-3 mb-4">
                     <MapPin className="h-5 w-5 text-slate-400 shrink-0 mt-0.5" />
                     <p className="text-sm text-slate-600 leading-relaxed">{c.contact.address}</p>
@@ -1024,7 +1046,7 @@ export default function Home() {
                   >
                     <Phone className="h-5 w-5 text-slate-400" />
                     <div>
-                      <p className="text-xs text-slate-400 font-medium">Telefone fixo</p>
+                      <p className="text-sm text-slate-500 font-medium">Telefone fixo</p>
                       <p className="text-sm text-slate-500 font-semibold line-through">244 861 144</p>
                       <p className="text-xs text-red-500 font-medium">Inoperacional</p>
                     </div>
@@ -1035,7 +1057,7 @@ export default function Home() {
                   >
                     <Phone className="h-5 w-5 text-green-600" />
                     <div>
-                      <p className="text-xs text-slate-400 font-medium">Telemóvel</p>
+                      <p className="text-sm text-slate-500 font-medium">Telemóvel</p>
                       <p className="text-sm text-slate-700 font-semibold">927 589 981</p>
                     </div>
                   </a>
@@ -1045,7 +1067,7 @@ export default function Home() {
                   >
                     <Mail className="h-5 w-5 text-blue-500" />
                     <div>
-                      <p className="text-xs text-slate-400 font-medium">Email</p>
+                      <p className="text-sm text-slate-500 font-medium">Email</p>
                       <p className="text-sm text-slate-700 font-semibold">{c.contact.email}</p>
                     </div>
                   </a>
