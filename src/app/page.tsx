@@ -340,6 +340,7 @@ export default function Home() {
   const [showLocationsModal, setShowLocationsModal] = useState(false)
   const [modalLocations, setModalLocations] = useState<{ title: string; locations: string[] } | null>(null)
   const [showAllAlerts, setShowAllAlerts] = useState(false)
+  const [showVolunteerModal, setShowVolunteerModal] = useState(false)
 
   // Separate critical alerts (danger) from others
   const criticalAlerts = c.alerts.filter(a => a.level === 'danger')
@@ -489,7 +490,16 @@ export default function Home() {
           <h2 className="text-center text-lg font-bold text-slate-700 mb-5 font-[family-name:var(--font-space-grotesk)]">
             O que precisa?
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+            <button
+              onClick={() => setShowVolunteerModal(true)}
+              className="flex flex-col items-center gap-2 bg-amber-50 rounded-2xl p-5 shadow-md border-2 border-amber-400 hover:border-amber-500 hover:shadow-lg transition-all col-span-2 md:col-span-1"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
+                <Users className="h-6 w-6 text-amber-600" />
+              </div>
+              <span className="font-bold text-amber-800 text-sm text-center">Sou Voluntário</span>
+            </button>
             <a
               href="https://chat.whatsapp.com/FisY199oJlgB3umsP5tfoG"
               target="_blank"
@@ -671,6 +681,123 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Volunteer Modal */}
+        {showVolunteerModal && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowVolunteerModal(false)}>
+            <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-amber-50">
+                <h3 className="font-bold text-amber-900 text-lg font-[family-name:var(--font-space-grotesk)]">
+                  Notas aos Voluntários
+                </h3>
+                <button
+                  onClick={() => setShowVolunteerModal(false)}
+                  className="p-2 hover:bg-amber-100 rounded-lg transition-colors"
+                >
+                  <X className="h-5 w-5 text-amber-700" />
+                </button>
+              </div>
+              <div className="p-5 overflow-y-auto max-h-[70vh] space-y-4 text-sm">
+                <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                  <p className="font-bold text-red-800 mb-2">⚠️ Atenção</p>
+                  <p className="text-red-700">Estamos sem comunicações no local. Se houver cancelamento devido ao tempo, avisamos. Verifiquem as notícias antes de sair — não corram perigo!</p>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-amber-500 font-bold">📍</span>
+                    <p className="text-slate-700"><strong>GPS Offline:</strong> Guardem nos Google Maps/GPS offline toda a área de Leiria, Marinha Grande e Pombal.</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-amber-500 font-bold">🧤</span>
+                    <p className="text-slate-700"><strong>Autoproteção:</strong> Luvas, calçado resistente que possa sujar/molhar, casacos impermeáveis.</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-amber-500 font-bold">🔧</span>
+                    <p className="text-slate-700"><strong>Equipamento útil:</strong> Pás, enxadas, vassouras grossas ou rodos (para juntar montes de lixo).</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-amber-500 font-bold">🚫</span>
+                    <p className="text-slate-700"><strong>Telhados:</strong> Não ambicionar reparar telhados sem experiência — os riscos são tremendos e não há seguros.</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-amber-500 font-bold">🍽️</span>
+                    <p className="text-slate-700"><strong>Refeições:</strong> Em Barreiros (Amor) há um restaurante a funcionar. Na Marinha Grande (~10km): McDonald&apos;s e Burger King.</p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="text-amber-500 font-bold">📦</span>
+                    <p className="text-slate-700"><strong>Donativos a trazer:</strong> Entregar apenas na Junta de Amor — poliuretano, produtos de limpeza, gasolina para geradores, alimentos não perecíveis, fraldas para bebés.</p>
+                  </div>
+                </div>
+
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mt-4">
+                  <p className="font-bold text-slate-800 mb-2">🤝 Atitudes</p>
+                  <ul className="text-slate-600 space-y-1">
+                    <li>• Bom senso de autoproteção</li>
+                    <li>• Alegria e dinamismo para ver/procurar trabalho</li>
+                    <li>• Compreensão — estamos cansados, em condições precárias, mas a tentar</li>
+                  </ul>
+                </div>
+
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
+                  <p className="font-bold text-amber-800 mb-3">📍 Pontos de encontro</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <a
+                      href="https://maps.app.goo.gl/EBT1rJcKS8GFVZUR9"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      Amor
+                    </a>
+                    <a
+                      href="https://maps.app.goo.gl/fNz74L57sTbs4Wo89"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      Barreiros
+                    </a>
+                    <a
+                      href="https://maps.app.goo.gl/sJTw7KRdESymAiVE9"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      Casal dos Claros
+                    </a>
+                    <a
+                      href="https://maps.app.goo.gl/kQu4iTqivG4b9xcv6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      Casal Novo
+                    </a>
+                  </div>
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/5tRzpnafeQtNVQqr9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-600 hover:bg-slate-700 text-white text-sm font-semibold px-5 py-3 transition-colors w-full"
+                >
+                  <MapPin className="h-4 w-4" />
+                  Junta de Freguesia (donativos)
+                </a>
               </div>
             </div>
           </div>

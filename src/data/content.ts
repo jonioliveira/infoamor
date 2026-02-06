@@ -113,10 +113,10 @@ export const siteContent: SiteContent = {
 
   alerts: [
     {
-      id: 'alert-roads',
+      id: 'alert-marta',
       level: 'danger',
-      title: 'Estrada Gândara–Barreiros fechada',
-      description: 'A estrada entre a Gândara e os Barreiros está fechada devido à subida do rio. Alternativas por Monte Real ou Marinha Grande.',
+      title: 'Tempestade Marta — Sábado, pior a partir da tarde',
+      description: 'Rajadas até 85-100 km/h de noroeste no litoral centro a partir da tarde. Chuva moderada a forte. Verifiquem as notícias antes de sair — não corram perigo!',
     },
     {
       id: 'alert-roads-info',
@@ -126,9 +126,9 @@ export const siteContent: SiteContent = {
     },
     {
       id: 'alert-cleanup',
-      level: 'info',
-      title: 'Ação de Limpeza Comunitária — Sábado, 7 de Fevereiro às 9h',
-      description: 'Vamos limpar a nossa freguesia! Consulte os detalhes na secção abaixo.',
+      level: 'danger',
+      title: 'Mudança de horário — Limpeza às 14h (não 9h)',
+      description: 'A ação de limpeza de sábado foi alterada para as 14h devido à tempestade Marta. Consulte os detalhes abaixo.',
     },
     {
       id: 'alert-materials',
@@ -307,7 +307,7 @@ export const siteContent: SiteContent = {
       id: 'community-event-1',
       title: 'Ação de Limpeza Comunitária',
       date: 'Sábado, 7 de Fevereiro',
-      time: '9h00',
+      time: '14h00',
       description: 'Junte-se a nós para limpar a freguesia. Encontre-se num dos pontos de concentração indicados.',
       meetingPoints: [
         { locality: 'Amor', location: 'Largo Padre Margalhau' },
@@ -315,8 +315,8 @@ export const siteContent: SiteContent = {
         { locality: 'Casal dos Claros', location: 'Largo da Igreja' },
         { locality: 'Casal Novo', location: 'Campo de Futebol' },
       ],
-      materials: ['Pás', 'Vassouras e ancinhos', 'Tratores e carrinhas', 'Luvas (temos disponíveis na Junta)'],
-      note: 'Não dispomos de alimentos para oferecer aos voluntários. Muitas mãos fazem trabalho ligeiro!',
+      materials: ['Pás, enxadas', 'Vassouras grossas ou rodos', 'Tratores e carrinhas', 'Luvas e calçado resistente', 'Casacos impermeáveis'],
+      note: 'Não ambicionar reparar telhados sem experiência — os riscos são tremendos. Se houver cancelamento devido ao tempo, avisamos.',
     },
     {
       id: 'community-event-2',
@@ -380,6 +380,15 @@ export const siteContent: SiteContent = {
         'Plataforma da CCDR Centro para declaração de prejuízos agrícolas. Agricultores devem proceder ao registo com a maior brevidade.',
       link: 'https://pdp25.ccdrc.pt/pdp_nologin.php',
       linkLabel: 'Aceder à plataforma →',
+    },
+    {
+      id: 'admin-sports',
+      title: 'Apoio a clubes e instalações desportivas',
+      description:
+        'Candidaturas gratuitas à Medida I.3 do Contrato-Programa de Desenvolvimento Desportivo 2024-2028 (Comité Olímpico de Portugal) para requalificação de instalações desportivas. Até 50% do custo, máximo 45.000€.',
+      link: 'https://docs.google.com/forms/d/e/1FAIpQLScBRedfQl69bE/viewform',
+      linkLabel: 'Preencher formulário →',
+      note: 'Prazo: até 5 de março de 2026. Serviço gratuito da Fullback.',
     },
     {
       id: 'admin-caderneta',
