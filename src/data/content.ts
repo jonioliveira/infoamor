@@ -353,7 +353,7 @@ export const siteContent: SiteContent = {
       id: 'admin-support',
       title: 'Pedidos de apoio — Particulares',
       description:
-        'Plataforma da CCDR Centro para pedidos de apoio por particulares.',
+        'Plataforma da CCDR Centro para pedidos de apoio por particulares. Documentos necessários: registo fotográfico dos danos, identificação do proprietário, identificação dos danos, Caderneta Predial Urbana, Certidão do Registo Predial, comprovativo de IBAN legível, apólice do seguro (se existir).',
       link: 'https://sigecandidaturas.ccdrc.pt/',
       linkLabel: 'Aceder à plataforma →',
     },
