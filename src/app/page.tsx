@@ -542,7 +542,7 @@ export default function Home() {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
                 <FileText className="h-6 w-6 text-purple-600" />
               </div>
-              <span className="font-bold text-slate-800 text-sm text-center">Reportar Danos</span>
+              <span className="font-bold text-slate-800 text-sm text-center">Danos e Apoios</span>
             </button>
           </div>
         </div>
