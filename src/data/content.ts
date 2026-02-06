@@ -386,7 +386,7 @@ export const siteContent: SiteContent = {
       title: 'Apoio a clubes e instalações desportivas',
       description:
         'Candidaturas gratuitas à Medida I.3 do Contrato-Programa de Desenvolvimento Desportivo 2024-2028 (Comité Olímpico de Portugal) para requalificação de instalações desportivas. Até 50% do custo, máximo 45.000€.',
-      link: 'https://docs.google.com/forms/d/e/1FAIpQLScBRedfQl69bE/viewform',
+      link: 'https://docs.google.com/forms/d/e/1FAIpQLScBRedfQl69bEHHNRMXfQVrjrtgV4hhSPUnlDx1enFn8Cv0-A/viewform',
       linkLabel: 'Preencher formulário →',
       note: 'Prazo: até 5 de março de 2026. Serviço gratuito da Fullback.',
     },
