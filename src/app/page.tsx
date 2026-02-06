@@ -933,6 +933,20 @@ export default function Home() {
                       </h3>
                       <p className="text-sm text-slate-500 leading-relaxed">{item.description}</p>
 
+                      {item.documents && (
+                        <div className="mt-3 bg-slate-50 rounded-lg p-3 border border-slate-200">
+                          <p className="text-xs font-bold text-slate-700 mb-2">Documentos necessários:</p>
+                          <ul className="text-xs text-slate-600 space-y-1">
+                            {item.documents.map((doc, i) => (
+                              <li key={i} className="flex items-start gap-2">
+                                <span className="text-slate-400">•</span>
+                                {doc}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
                       {item.link && (
                         <a
                           href={item.link}
