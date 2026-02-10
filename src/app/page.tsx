@@ -123,6 +123,7 @@ const resourceIcons: Record<string, React.ReactNode> = {
   'resource-tarpaulin': <Package className="h-6 w-6 text-blue-600" />,
   'resource-tiles': <Building2 className="h-6 w-6 text-amber-600" />,
   'resource-internet': <Wifi className="h-6 w-6 text-blue-500" />,
+  'resource-censocapa': <HandHelping className="h-6 w-6 text-blue-600" />,
   'resource-whatsapp': <MessageCircle className="h-6 w-6 text-green-500" />,
   'resource-door-to-door': <Users className="h-6 w-6 text-purple-500" />,
   'resource-sos-leiria': <HandHelping className="h-6 w-6 text-green-500" />,

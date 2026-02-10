@@ -100,7 +100,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '6 de Fevereiro de 2026',
+    lastUpdated: '10 de Fevereiro de 2026',
   },
 
   navSections: [
@@ -273,7 +273,12 @@ export const siteContent: SiteContent = {
     {
       id: 'resource-internet',
       title: 'Internet e carregamento',
-      description: 'Ligação wireless disponível na Junta de Freguesia, em rede aberta. Posto de carregamento de telemóvel também disponível.',
+      description: 'Ligação wireless disponível na Junta de Freguesia, em rede aberta. Posto de carregamento de telemóvel também disponível. Internet também disponível no Bar Unidos (rede Unidos-Starlink).',
+    },
+    {
+      id: 'resource-censocapa',
+      title: 'CENSOCAPA — Apoio à população',
+      description: 'Sopa, banhos quentes e lavagem de roupa. Todos os serviços por marcação (de preferência no dia anterior), sujeitos a disponibilidade. Contactos: 244 840 244 · 918 448 687 (Luzia) · 918 716 397 (Vilma) · 967 777 913 (Patrícia).',
     },
     {
       id: 'resource-whatsapp',
