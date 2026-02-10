@@ -114,13 +114,7 @@ export const siteContent: SiteContent = {
   ],
 
   alerts: [
-    {
-      id: 'alert-marta',
-      level: 'danger',
-      title: 'Tempestade Marta — Sexta a sábado até ao almoço',
-      description: 'Rajadas até 85-100 km/h de noroeste no litoral centro. Chuva moderada a forte. Verifiquem as notícias antes de sair — não corram perigo!',
-    },
-    {
+{
       id: 'alert-gandara',
       level: 'danger',
       title: 'Estrada da Gândara–Barreiros',
@@ -132,13 +126,7 @@ export const siteContent: SiteContent = {
       title: 'Estado dos acessos',
       description: 'A17 pelo Campo: Fechado. Barreiros–Ponta da Pedra: Fechado. Monte Real (Rua da Base Aérea): Aberto. Marinha Grande (Casalito, Casal Novo, Coucinheira): Aberto.',
     },
-    {
-      id: 'alert-materials',
-      level: 'danger',
-      title: 'Urgente — Lonas, telha e chapa',
-      description: 'Precisamos com urgência de lonas, telha e chapa. Entregue na Junta de Freguesia.',
-    },
-    {
+{
       id: 'alert-damages',
       level: 'warning',
       title: 'Declare os seus estragos',
@@ -149,6 +137,12 @@ export const siteContent: SiteContent = {
       level: 'warning',
       title: 'Internet limitada na Junta',
       description: 'De momento, temos internet muito limitada na Junta de Freguesia, o que não nos vai permitir atender todos os fregueses com a rapidez que gostaríamos.',
+    },
+    {
+      id: 'alert-colegio-dinis-melo',
+      level: 'danger',
+      title: 'Colégio Dinis de Melo — Reabertura terça-feira, 10 de Fevereiro',
+      description: 'Atividades letivas retomam na terça-feira. Almoço disponível (prato único). Horários enviados por email e Teams. Alunos devem levar material básico: caderno, canetas e lápis de cor. Inovar indisponível por falta de rede. Transporte escolar retoma horário habitual.',
     },
   ],
 
@@ -311,22 +305,7 @@ export const siteContent: SiteContent = {
   ],
 
   communityEvents: [
-    {
-      id: 'community-event-1',
-      title: 'Ação de Limpeza Comunitária',
-      date: 'Sábado, 7 de Fevereiro',
-      time: '9h00',
-      description: 'Junte-se a nós para limpar a freguesia. Encontre-se num dos pontos de concentração indicados.',
-      meetingPoints: [
-        { locality: 'Amor', location: 'Largo Padre Margalhau' },
-        { locality: 'Barreiros', location: 'Largo da Igreja' },
-        { locality: 'Casal dos Claros', location: 'Largo da Igreja' },
-        { locality: 'Casal Novo', location: 'Campo de Futebol' },
-      ],
-      materials: ['Pás, enxadas', 'Vassouras grossas ou rodos', 'Tratores e carrinhas', 'Luvas e calçado resistente', 'Casacos impermeáveis'],
-      note: 'Não ambicionar reparar telhados sem experiência — os riscos são tremendos. Se houver cancelamento devido ao tempo, avisamos.',
-    },
-    {
+{
       id: 'community-event-2',
       title: 'Ações diárias',
       date: 'Todos os dias',

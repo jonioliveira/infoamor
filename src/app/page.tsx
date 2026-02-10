@@ -946,49 +946,17 @@ export default function Home() {
                 </div>
 
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-                  <p className="font-bold text-amber-800 mb-3">📍 Pontos de encontro</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    <a
-                      href="https://maps.app.goo.gl/EBT1rJcKS8GFVZUR9"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
-                      aria-label="Ver ponto de encontro de Amor no Google Maps"
-                    >
-                      <MapPin className="h-4 w-4" />
-                      Amor
-                    </a>
-                    <a
-                      href="https://maps.app.goo.gl/fNz74L57sTbs4Wo89"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
-                      aria-label="Ver ponto de encontro de Barreiros no Google Maps"
-                    >
-                      <MapPin className="h-4 w-4" />
-                      Barreiros
-                    </a>
-                    <a
-                      href="https://maps.app.goo.gl/sJTw7KRdESymAiVE9"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
-                      aria-label="Ver ponto de encontro de Casal dos Claros no Google Maps"
-                    >
-                      <MapPin className="h-4 w-4" />
-                      Casal dos Claros
-                    </a>
-                    <a
-                      href="https://maps.app.goo.gl/kQu4iTqivG4b9xcv6"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
-                      aria-label="Ver ponto de encontro de Casal Novo no Google Maps"
-                    >
-                      <MapPin className="h-4 w-4" />
-                      Casal Novo
-                    </a>
-                  </div>
+                  <p className="font-bold text-amber-800 mb-3">📍 Ponto de encontro</p>
+                  <a
+                    href="https://maps.app.goo.gl/EBT1rJcKS8GFVZUR9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
+                    aria-label="Ver ponto de encontro de Amor no Google Maps"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    Amor
+                  </a>
                 </div>
 
                 <a
