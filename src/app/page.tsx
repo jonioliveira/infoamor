@@ -390,6 +390,7 @@ export default function Home() {
   const [showVolunteerModal, setShowVolunteerModal] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [showSearch, setShowSearch] = useState(false)
+  const [showComunicado, setShowComunicado] = useState(false)
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set(['meteo']))
 
   // Separate critical alerts (danger) from others
@@ -402,6 +403,7 @@ export default function Home() {
       if (e.key === 'Escape') {
         setShowLocationsModal(false)
         setShowVolunteerModal(false)
+        setShowComunicado(false)
         setShowSearch(false)
         setSearchQuery('')
       }
@@ -749,6 +751,25 @@ export default function Home() {
       {/* ================================================================== */}
       <div className="max-w-6xl mx-auto px-5 md:px-10 py-6">
         <div className="space-y-3">
+          {/* Comunicado oficial */}
+          <button
+            onClick={() => setShowComunicado(true)}
+            className="w-full border-l-4 border-amber-500 bg-amber-50 text-amber-900 rounded-r-xl px-5 py-4 shadow-sm text-left hover:bg-amber-100 transition-colors"
+          >
+            <div className="flex items-start gap-4">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-white">
+                <FileText className="h-3.5 w-3.5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-bold text-[0.9rem] leading-snug">Comunicado da Junta — Gerador na Rua da Fé</p>
+                  <span className="text-xs font-medium text-amber-600 bg-amber-200/60 rounded-full px-2.5 py-0.5 shrink-0">Ler mais</span>
+                </div>
+                <p className="text-sm mt-1 opacity-75 leading-relaxed">Gerador colocado para alimentar Barradas e Toco. E-Redes exige precauções adicionais antes de ligar.</p>
+              </div>
+            </div>
+          </button>
+
           {/* Always show critical (danger) alerts */}
           {criticalAlerts.map(alert => (
             <AlertBanner key={alert.id} alert={alert} />
@@ -970,6 +991,43 @@ export default function Home() {
                   <MapPin className="h-4 w-4" />
                   Junta de Freguesia (donativos)
                 </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Comunicado Modal */}
+        {showComunicado && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowComunicado(false)} role="dialog" aria-modal="true" aria-labelledby="comunicado-modal-title">
+            <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-amber-50">
+                <div>
+                  <h3 id="comunicado-modal-title" className="font-bold text-amber-900 text-lg font-[family-name:var(--font-space-grotesk)]">
+                    Comunicado à População
+                  </h3>
+                  <p className="text-xs text-amber-600 font-medium mt-0.5">Junta de Freguesia de Amor</p>
+                </div>
+                <button
+                  onClick={() => setShowComunicado(false)}
+                  className="p-2 hover:bg-amber-100 rounded-lg transition-colors"
+                  aria-label="Fechar"
+                >
+                  <X className="h-5 w-5 text-amber-700" />
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto max-h-[70vh] space-y-4 text-sm text-slate-700 leading-relaxed">
+                <p>
+                  Informamos que ontem foi colocado um <strong>gerador junto ao posto de transformação da Rua da Fé</strong>, destinado a alimentar as zonas das <strong>Barradas</strong> e do <strong>Toco</strong>.
+                </p>
+                <p>
+                  Caso esta situação tivesse ocorrido há uma semana, o mesmo provavelmente já estaria em funcionamento. No entanto, fomos informados pela <strong>E-Redes</strong> que, na sequência do <strong>acidente mortal</strong> ocorrido nos últimos dias, foi tomada a decisão de não ligar qualquer gerador sem a implementação de <strong>precauções adicionais</strong>, de forma a garantir que uma situação semelhante não volte a acontecer.
+                </p>
+                <p>
+                  Temos plena consciência de que já passaram demasiados dias e que a situação continua a causar constrangimentos à população. Continuamos empenhados e a tentar manter contacto com o serviço de abastecimento elétrico, no sentido de <strong>repor o fornecimento de energia elétrica</strong> em toda a freguesia com a maior brevidade possível.
+                </p>
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-2">
+                  <p className="text-amber-800 font-semibold">Agradecemos o esforço de todos.</p>
+                </div>
               </div>
             </div>
           </div>

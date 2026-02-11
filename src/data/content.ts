@@ -100,7 +100,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '10 de Fevereiro de 2026',
+    lastUpdated: '11 de Fevereiro de 2026',
   },
 
   navSections: [
@@ -138,12 +138,6 @@ export const siteContent: SiteContent = {
       title: 'Internet limitada na Junta',
       description: 'De momento, temos internet muito limitada na Junta de Freguesia, o que não nos vai permitir atender todos os fregueses com a rapidez que gostaríamos.',
     },
-    {
-      id: 'alert-colegio-dinis-melo',
-      level: 'danger',
-      title: 'Colégio Dinis de Melo — Reabertura terça-feira, 10 de Fevereiro',
-      description: 'Atividades letivas retomam na terça-feira. Almoço disponível (prato único). Horários enviados por email e Teams. Alunos devem levar material básico: caderno, canetas e lápis de cor. Inovar indisponível por falta de rede. Transporte escolar retoma horário habitual.',
-    },
   ],
 
   serviceStatus: [
@@ -160,7 +154,7 @@ export const siteContent: SiteContent = {
       status: 'partial',
       statusLabel: 'Parcial',
       description:
-        'Falhas de abastecimento na zona das Barradas, Brejieira e Toco. Estão a tentar restabelecer nas próximas horas.',
+        'Foi colocado um gerador junto ao posto de transformação da Rua da Fé para alimentar as Barradas e o Toco. A E-Redes, após o acidente mortal recente, exige precauções adicionais antes de ligar qualquer gerador. A Junta continua em contacto para repor a energia o mais brevemente possível.',
       warning: 'Cuidado com cabos caídos — não toque, podem ter energia.',
       link: 'https://balcaodigital.e-redes.pt/home/risky',
       linkLabel: 'Reportar cabos perigosos →',
