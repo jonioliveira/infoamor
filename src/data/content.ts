@@ -169,6 +169,10 @@ export const siteContent: SiteContent = {
           url: 'https://balcaodigital.e-redes.pt/anomalies/without-light',
           label: 'Reportar falta de luz em casa →',
         },
+        {
+          url: 'https://www.google.com/maps/d/u/2/edit?mid=1XOtW7twJG1JfIqKC8py8jFkt1m6_rRY&usp=sharing',
+          label: 'Ver mapa de ruas com problemas elétricos →',
+        },
       ],
     },
     {
