@@ -441,6 +441,9 @@ function BolsaTrabalho() {
                 className="bg-white rounded-2xl shadow-md border border-slate-100 p-5 hover:shadow-lg transition-shadow"
               >
                 <p className="font-bold text-slate-900 text-base">{s.nome}</p>
+                {s.empresa && (
+                  <p className="text-sm text-slate-600 font-medium">{s.empresa}</p>
+                )}
                 {s.descricao && (
                   <p className="text-sm text-slate-500 mt-1 leading-relaxed">{s.descricao}</p>
                 )}

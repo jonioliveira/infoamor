@@ -1,0 +1,1 @@
+ALTER TABLE servicos ADD COLUMN empresa TEXT DEFAULT '';

@@ -5,6 +5,7 @@ export interface Env {
 export interface Servico {
   id: number
   nome: string
+  empresa: string
   categoria: string
   descricao: string
   contacto: string

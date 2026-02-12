@@ -71,6 +71,7 @@ export interface AdministrativeItem {
 export interface ServicoPublico {
   id: number
   nome: string
+  empresa: string
   categoria: string
   descricao: string
   contacto: string
