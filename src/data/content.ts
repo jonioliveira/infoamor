@@ -68,6 +68,14 @@ export interface AdministrativeItem {
   note?: string
 }
 
+export interface ServicoPublico {
+  id: number
+  nome: string
+  categoria: string
+  descricao: string
+  contacto: string
+}
+
 export interface ContactInfo {
   entity: string
   municipality: string
@@ -109,6 +117,7 @@ export const siteContent: SiteContent = {
     { id: 'limpeza', label: 'Limpeza' },
     { id: 'transporte', label: 'Transporte' },
     { id: 'declaracoes', label: 'Apoios' },
+    { id: 'bolsa-trabalho', label: 'Bolsa de Trabalho' },
     { id: 'contactos', label: 'Contactos' },
     { id: 'meteo', label: 'Meteo' },
   ],

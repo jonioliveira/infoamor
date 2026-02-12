@@ -1,0 +1,8 @@
+name = "infoamor"
+pages_build_output_dir = "./out"
+compatibility_date = "2026-02-12"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bolsa-trabalho"
+database_id = "1c5d63ce-9c4b-469c-b224-309c5627dec1"

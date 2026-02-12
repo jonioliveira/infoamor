@@ -1,9 +1,10 @@
 'use client'
 
-import { siteContent, type Alert, type AlertLevel, type ServiceStatus, type ServiceStatusLevel } from '@/data/content'
+import { siteContent, type Alert, type AlertLevel, type ServicoPublico, type ServiceStatus, type ServiceStatusLevel } from '@/data/content'
 import {
   Activity,
   AlertTriangle,
+  Briefcase,
   Building2,
   CalendarDays,
   Car,
@@ -47,6 +48,7 @@ import {
   Utensils,
   Wifi,
   Wind,
+  Wrench,
   X,
   Zap,
 } from 'lucide-react'
@@ -369,6 +371,88 @@ function WeatherForecast() {
               <Wind className="h-3 w-3" />
               <span>{Math.round(weather.wind_speed_10m_max[i])} km/h</span>
             </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// =============================================================================
+// Bolsa de Trabalho
+// =============================================================================
+
+function BolsaTrabalho() {
+  const [servicos, setServicos] = useState<ServicoPublico[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    fetch('/api/servicos')
+      .then(r => r.json())
+      .then(data => {
+        setServicos(data.servicos)
+        setLoading(false)
+      })
+      .catch(() => {
+        setError(true)
+        setLoading(false)
+      })
+  }, [])
+
+  if (error) {
+    return (
+      <p className="text-sm text-slate-500 text-center py-8">Não foi possível carregar os serviços disponíveis.</p>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-12">
+        <div className="h-8 w-8 border-4 border-slate-200 border-t-green-600 rounded-full animate-spin" />
+      </div>
+    )
+  }
+
+  if (servicos.length === 0) {
+    return (
+      <p className="text-sm text-slate-500 text-center py-8">Ainda não há serviços registados.</p>
+    )
+  }
+
+  const grouped = servicos.reduce<Record<string, ServicoPublico[]>>((acc, s) => {
+    if (!acc[s.categoria]) acc[s.categoria] = []
+    acc[s.categoria].push(s)
+    return acc
+  }, {})
+
+  return (
+    <div className="space-y-8">
+      {Object.entries(grouped).map(([categoria, items]) => (
+        <div key={categoria}>
+          <h3 className="flex items-center gap-2 text-lg font-bold text-slate-800 mb-4 font-[family-name:var(--font-space-grotesk)]">
+            <Wrench className="h-5 w-5 text-slate-400" />
+            {categoria}
+          </h3>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {items.map(s => (
+              <div
+                key={s.id}
+                className="bg-white rounded-2xl shadow-md border border-slate-100 p-5 hover:shadow-lg transition-shadow"
+              >
+                <p className="font-bold text-slate-900 text-base">{s.nome}</p>
+                {s.descricao && (
+                  <p className="text-sm text-slate-500 mt-1 leading-relaxed">{s.descricao}</p>
+                )}
+                <a
+                  href={`tel:${s.contacto}`}
+                  className="mt-3 inline-flex items-center gap-2 rounded-xl bg-green-700 hover:bg-green-800 text-white text-sm font-semibold px-4 py-2 transition-colors shadow-sm"
+                >
+                  <Phone className="h-4 w-4" />
+                  {s.contacto}
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       ))}
@@ -1231,6 +1315,17 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* -------------------------------------------------------------- */}
+        {/* BOLSA DE TRABALHO                                                */}
+        {/* -------------------------------------------------------------- */}
+        <section className="py-14 md:py-20 bg-white">
+          <div className="max-w-6xl mx-auto px-5 md:px-10">
+            <SectionHeader id="bolsa-trabalho" icon={<Briefcase className="h-5 w-5" />} title="Bolsa de Trabalho" />
+            <p className="text-slate-500 mb-8 -mt-4">Serviços locais disponíveis para ajudar na recuperação.</p>
+            <BolsaTrabalho />
           </div>
         </section>
 
