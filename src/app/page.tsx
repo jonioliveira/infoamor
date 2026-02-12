@@ -382,24 +382,7 @@ function WeatherForecast() {
 // Bolsa de Trabalho
 // =============================================================================
 
-function BolsaTrabalho() {
-  const [servicos, setServicos] = useState<ServicoPublico[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
-
-  useEffect(() => {
-    fetch('/api/servicos')
-      .then(r => r.json())
-      .then(data => {
-        setServicos(data.servicos)
-        setLoading(false)
-      })
-      .catch(() => {
-        setError(true)
-        setLoading(false)
-      })
-  }, [])
-
+function BolsaTrabalho({ servicos, loading, error }: { servicos: ServicoPublico[]; loading: boolean; error: boolean }) {
   if (error) {
     return (
       <p className="text-sm text-slate-500 text-center py-8">Não foi possível carregar os serviços disponíveis.</p>
@@ -479,6 +462,9 @@ export default function Home() {
   const [showSearch, setShowSearch] = useState(false)
   const [showComunicado, setShowComunicado] = useState(false)
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set(['meteo']))
+  const [bolsaServicos, setBolsaServicos] = useState<ServicoPublico[]>([])
+  const [bolsaLoading, setBolsaLoading] = useState(true)
+  const [bolsaError, setBolsaError] = useState(false)
 
   // Separate critical alerts (danger) from others
   const criticalAlerts = c.alerts.filter(a => a.level === 'danger')
@@ -501,6 +487,19 @@ export default function Home() {
     }
     window.addEventListener('keydown', handleKeyboard)
     return () => window.removeEventListener('keydown', handleKeyboard)
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/servicos')
+      .then(r => r.json())
+      .then(data => {
+        setBolsaServicos(data.servicos)
+        setBolsaLoading(false)
+      })
+      .catch(() => {
+        setBolsaError(true)
+        setBolsaLoading(false)
+      })
   }, [])
 
   useEffect(() => {
@@ -558,6 +557,12 @@ export default function Home() {
     admin: c.administrative.filter(a =>
       a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       a.description.toLowerCase().includes(searchQuery.toLowerCase())
+    ),
+    bolsa: bolsaServicos.filter(s =>
+      s.nome.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.empresa.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.categoria.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.descricao.toLowerCase().includes(searchQuery.toLowerCase())
     ),
   } : null
 
@@ -650,7 +655,18 @@ export default function Home() {
                     ))}
                   </div>
                 )}
-                {searchResults.alerts.length === 0 && searchResults.services.length === 0 && searchResults.resources.length === 0 && searchResults.admin.length === 0 && (
+                {searchResults.bolsa.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-xs font-bold text-slate-400 uppercase px-3 py-2">Bolsa de Trabalho</p>
+                    {searchResults.bolsa.map(s => (
+                      <button key={s.id} onClick={() => { setShowSearch(false); setSearchQuery(''); scrollTo('bolsa-trabalho') }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors">
+                        <p className="font-medium text-slate-900">{s.nome}{s.empresa ? ` — ${s.empresa}` : ''}</p>
+                        <p className="text-sm text-slate-500 truncate">{s.categoria}{s.descricao ? ` · ${s.descricao}` : ''}</p>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {searchResults.alerts.length === 0 && searchResults.services.length === 0 && searchResults.resources.length === 0 && searchResults.admin.length === 0 && searchResults.bolsa.length === 0 && (
                   <p className="text-center text-slate-500 py-8">Nenhum resultado para &quot;{searchQuery}&quot;</p>
                 )}
               </div>
@@ -1328,7 +1344,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-5 md:px-10">
             <SectionHeader id="bolsa-trabalho" icon={<Briefcase className="h-5 w-5" />} title="Bolsa de Trabalho" />
             <p className="text-slate-500 mb-8 -mt-4">Serviços locais disponíveis para ajudar na recuperação.</p>
-            <BolsaTrabalho />
+            <BolsaTrabalho servicos={bolsaServicos} loading={bolsaLoading} error={bolsaError} />
           </div>
         </section>
 

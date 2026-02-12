@@ -109,7 +109,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '11 de Fevereiro de 2026',
+    lastUpdated: '12 de Fevereiro de 2026',
   },
 
   navSections: [
@@ -124,6 +124,12 @@ export const siteContent: SiteContent = {
   ],
 
   alerts: [
+    {
+      id: 'alert-weather-12feb',
+      level: 'danger',
+      title: 'Mau tempo a partir das 21h de dia 12',
+      description: 'Chuva: aviso amarelo das 21h de hoje às 6h de amanhã. Vento: aviso amarelo das 00h às 3h do dia 14 (rajadas até 80 km/h). Evite deslocações, afaste-se de zonas inundáveis e arborizadas, reforce estores e janelas, não faça trabalhos ao ar livre.',
+    },
 {
       id: 'alert-gandara',
       level: 'danger',
@@ -349,6 +355,13 @@ export const siteContent: SiteContent = {
   ],
 
   administrative: [
+    {
+      id: 'admin-formulario-doacoes',
+      title: 'Formulário de necessidades — Doações',
+      description: 'Formulário da Junta de Freguesia para recolher dados e agilizar a distribuição de doações à população afetada.',
+      link: 'https://tally.so/r/jaQg6a',
+      linkLabel: 'Preencher formulário →',
+    },
     {
       id: 'admin-support',
       title: 'Pedidos de apoio — Particulares',
