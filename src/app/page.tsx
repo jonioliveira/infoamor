@@ -461,6 +461,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
   const [showSearch, setShowSearch] = useState(false)
   const [showComunicado, setShowComunicado] = useState(false)
+  const [showRoadsModal, setShowRoadsModal] = useState(false)
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set(['meteo']))
   const [bolsaServicos, setBolsaServicos] = useState<ServicoPublico[]>([])
   const [bolsaLoading, setBolsaLoading] = useState(true)
@@ -477,6 +478,7 @@ export default function Home() {
         setShowLocationsModal(false)
         setShowVolunteerModal(false)
         setShowComunicado(false)
+        setShowRoadsModal(false)
         setShowSearch(false)
         setSearchQuery('')
       }
@@ -873,6 +875,25 @@ export default function Home() {
             </div>
           </button>
 
+          {/* Roads comunicado */}
+          <button
+            onClick={() => setShowRoadsModal(true)}
+            className="w-full border-l-4 border-blue-500 bg-blue-50 text-blue-900 rounded-r-xl px-5 py-4 shadow-sm text-left hover:bg-blue-100 transition-colors"
+          >
+            <div className="flex items-start gap-4">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue-500 text-white">
+                <Car className="h-3.5 w-3.5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-bold text-[0.9rem] leading-snug">Ponto de Situação dos Acessos</p>
+                  <span className="text-xs font-medium text-blue-600 bg-blue-200/60 rounded-full px-2.5 py-0.5 shrink-0">Ler mais</span>
+                </div>
+                <p className="text-sm mt-1 opacity-75 leading-relaxed">Vistorias em curso. A17 e Barreiros–Ponta da Pedra fechados. Reabertura prevista para a próxima semana.</p>
+              </div>
+            </div>
+          </button>
+
           {/* Always show critical (danger) alerts */}
           {criticalAlerts.map(alert => (
             <AlertBanner key={alert.id} alert={alert} />
@@ -1094,6 +1115,57 @@ export default function Home() {
                   <MapPin className="h-4 w-4" />
                   Junta de Freguesia (donativos)
                 </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Roads Modal */}
+        {showRoadsModal && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowRoadsModal(false)} role="dialog" aria-modal="true" aria-labelledby="roads-modal-title">
+            <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-blue-50">
+                <div>
+                  <h3 id="roads-modal-title" className="font-bold text-blue-900 text-lg font-[family-name:var(--font-space-grotesk)]">
+                    Ponto de Situação dos Acessos
+                  </h3>
+                  <p className="text-xs text-blue-600 font-medium mt-0.5">Junta de Freguesia de Amor</p>
+                </div>
+                <button
+                  onClick={() => setShowRoadsModal(false)}
+                  className="p-2 hover:bg-blue-100 rounded-lg transition-colors"
+                  aria-label="Fechar"
+                >
+                  <X className="h-5 w-5 text-blue-700" />
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto max-h-[70vh] space-y-4 text-sm text-slate-700 leading-relaxed">
+                <p>
+                  Com a <strong>descida do nível das águas no campo</strong> e a reparação das margens do Rio Liz, várias entidades responsáveis iniciaram <strong>vistorias às estradas e pontes</strong> da zona.
+                </p>
+                <p>
+                  Já foram detetados alguns problemas nas vias que terão de ser reparados. No entanto, a primeira estimativa aponta para a <strong>reabertura das ruas durante a próxima semana</strong>.
+                </p>
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2">
+                  <p className="font-bold text-slate-800 mb-3">Estado dos acessos:</p>
+                  {[
+                    { status: 'closed', label: 'Acesso à A17 pelo Campo' },
+                    { status: 'open', label: 'Acesso a Monte Real — Rua da Base Aérea' },
+                    { status: 'open', label: 'Acesso a Leiria — Rua Padre Margalhau (Barreiros–Gândara)' },
+                    { status: 'closed', label: 'Acesso a Leiria — Barreiros–Ponta da Pedra' },
+                    { status: 'open', label: 'Acesso à Marinha Grande — Casalito–Pero Neto' },
+                    { status: 'open', label: 'Acesso à Marinha Grande — Casal Novo–Ameira' },
+                    { status: 'open', label: 'Acesso à Marinha Grande — Coucinheira–Casal Galego' },
+                  ].map(road => (
+                    <div key={road.label} className={`flex items-center gap-3 rounded-lg px-3 py-2 ${road.status === 'open' ? 'bg-emerald-50' : 'bg-red-50'}`}>
+                      <span className={`text-base shrink-0`}>{road.status === 'open' ? '✅' : '⛔'}</span>
+                      <span className={`font-medium text-sm ${road.status === 'open' ? 'text-emerald-800' : 'text-red-800'}`}>{road.label}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                  <p className="text-blue-800">Continuaremos a atualizar a população sempre que existam novas informações. Agradecemos a compreensão e apelamos à <strong>máxima prudência</strong> na circulação.</p>
+                </div>
               </div>
             </div>
           </div>

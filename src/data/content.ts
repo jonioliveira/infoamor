@@ -109,7 +109,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '12 de Fevereiro de 2026',
+    lastUpdated: '20 de Fevereiro de 2026',
   },
 
   navSections: [
@@ -139,8 +139,8 @@ export const siteContent: SiteContent = {
     {
       id: 'alert-roads-info',
       level: 'info',
-      title: 'Estado dos acessos',
-      description: 'A17 pelo Campo: Fechado. Barreiros–Ponta da Pedra: Fechado. Monte Real (Rua da Base Aérea): Aberto. Marinha Grande (Casalito, Casal Novo, Coucinheira): Aberto.',
+      title: 'Estado dos acessos — atualizado',
+      description: 'A17 pelo Campo: Fechado. Barreiros–Ponta da Pedra: Fechado. Acesso a Monte Real, Leiria e Marinha Grande: Abertos. Reabertura das restantes vias prevista para a próxima semana.',
     },
 {
       id: 'alert-damages',
