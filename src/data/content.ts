@@ -125,34 +125,18 @@ export const siteContent: SiteContent = {
 
   alerts: [
     {
-      id: 'alert-weather-12feb',
-      level: 'danger',
-      title: 'Mau tempo a partir das 21h de dia 12',
-      description: 'Chuva: aviso amarelo das 21h de hoje às 6h de amanhã. Vento: aviso amarelo das 00h às 3h do dia 14 (rajadas até 80 km/h). Evite deslocações, afaste-se de zonas inundáveis e arborizadas, reforce estores e janelas, não faça trabalhos ao ar livre.',
-    },
-{
-      id: 'alert-gandara',
-      level: 'danger',
-      title: 'Estrada da Gândara–Barreiros',
-      description: 'Abre e fecha conforme a chuva e altura da água. Verifique antes de passar.',
-    },
-    {
-      id: 'alert-roads-info',
-      level: 'info',
-      title: 'Estado dos acessos — atualizado',
-      description: 'A17 pelo Campo: Fechado. Barreiros–Ponta da Pedra: Fechado. Acesso a Monte Real, Leiria e Marinha Grande: Abertos. Reabertura das restantes vias prevista para a próxima semana.',
-    },
-{
       id: 'alert-damages',
       level: 'warning',
       title: 'Declare os seus estragos',
-      description: 'Preencha as declarações de prejuízos agrícolas, empresariais e em habitações com a maior brevidade possível.',
+      description:
+        'Preencha as declarações de prejuízos agrícolas, empresariais e em habitações com a maior brevidade possível.',
     },
     {
       id: 'alert-internet-junta',
       level: 'warning',
       title: 'Internet limitada na Junta',
-      description: 'De momento, temos internet muito limitada na Junta de Freguesia, o que não nos vai permitir atender todos os fregueses com a rapidez que gostaríamos.',
+      description:
+        'De momento, temos internet muito limitada na Junta de Freguesia, o que não nos vai permitir atender todos os fregueses com a rapidez que gostaríamos.',
     },
   ],
 
@@ -204,7 +188,8 @@ export const siteContent: SiteContent = {
       name: 'Escolas',
       status: 'operational',
       statusLabel: 'Operacional',
-      description: 'Todas as escolas continuam abertas. Estamos a proceder às restantes reparações o mais rapidamente possível.',
+      description:
+        'Todas as escolas continuam abertas. Estamos a proceder às restantes reparações o mais rapidamente possível.',
       link: 'https://aemarrazes.com/pt/ultimas/estabelecimentos-de-educacao-e-ensino-do-agrupamento-com-condicoes-de-funcionamento-informacao-de-reabertura-atualizado-em-04-02-2026-15-54h-',
       linkLabel: 'Ver informação do Agrupamento →',
     },
@@ -282,17 +267,20 @@ export const siteContent: SiteContent = {
     {
       id: 'resource-tiles',
       title: 'Telhas e material de construção',
-      description: 'Está a ser criado um depósito no Mercado do Falcão (Marrazes). Até lá, podem deslocar-se ao Estádio Municipal — levem um exemplar da telha e as quantidades necessárias. Para doações, estamos a aceitar na Junta.',
+      description:
+        'Está a ser criado um depósito no Mercado do Falcão (Marrazes). Até lá, podem deslocar-se ao Estádio Municipal — levem um exemplar da telha e as quantidades necessárias. Para doações, estamos a aceitar na Junta.',
     },
     {
       id: 'resource-internet',
       title: 'Internet e carregamento',
-      description: 'Ligação wireless disponível na Junta de Freguesia, em rede aberta. Posto de carregamento de telemóvel também disponível. Internet também disponível no Bar Unidos (rede Unidos-Starlink).',
+      description:
+        'Ligação wireless disponível na Junta de Freguesia, em rede aberta. Posto de carregamento de telemóvel também disponível. Internet também disponível no Bar Unidos (rede Unidos-Starlink).',
     },
     {
       id: 'resource-censocapa',
       title: 'CENSOCAPA — Apoio à população',
-      description: 'Sopa, banhos quentes e lavagem de roupa. Todos os serviços por marcação (de preferência no dia anterior), sujeitos a disponibilidade. Contactos: 244 840 244 · 918 448 687 (Luzia) · 918 716 397 (Vilma) · 967 777 913 (Patrícia).',
+      description:
+        'Sopa, banhos quentes e lavagem de roupa. Todos os serviços por marcação (de preferência no dia anterior), sujeitos a disponibilidade. Contactos: 244 840 244 · 918 448 687 (Luzia) · 918 716 397 (Vilma) · 967 777 913 (Patrícia).',
     },
     {
       id: 'resource-whatsapp',
@@ -324,7 +312,7 @@ export const siteContent: SiteContent = {
   ],
 
   communityEvents: [
-{
+    {
       id: 'community-event-2',
       title: 'Ações diárias',
       date: 'Todos os dias',
@@ -348,7 +336,8 @@ export const siteContent: SiteContent = {
       id: 'transport-bus',
       provider: 'Transportes públicos',
       title: 'Rotas adaptadas',
-      description: 'Existem adaptações às rotas habituais devido aos estragos. As rotas habituais serão repostas assim que os autocarros consigam passar.',
+      description:
+        'Existem adaptações às rotas habituais devido aos estragos. As rotas habituais serão repostas assim que os autocarros consigam passar.',
       details: ['Sem informação sobre paragens temporárias'],
       period: 'Até restabelecimento',
     },
@@ -358,15 +347,15 @@ export const siteContent: SiteContent = {
     {
       id: 'admin-formulario-doacoes',
       title: 'Formulário de necessidades — Doações',
-      description: 'Formulário da Junta de Freguesia para recolher dados e agilizar a distribuição de doações à população afetada.',
+      description:
+        'Formulário da Junta de Freguesia para recolher dados e agilizar a distribuição de doações à população afetada.',
       link: 'https://tally.so/r/jaQg6a',
       linkLabel: 'Preencher formulário →',
     },
     {
       id: 'admin-support',
       title: 'Pedidos de apoio — Particulares',
-      description:
-        'Plataforma da CCDR Centro para pedidos de apoio por particulares.',
+      description: 'Plataforma da CCDR Centro para pedidos de apoio por particulares.',
       documents: [
         'Registo fotográfico dos danos',
         'Identificação do proprietário do imóvel',
@@ -382,16 +371,14 @@ export const siteContent: SiteContent = {
     {
       id: 'admin-housing',
       title: 'Declaração de danos — Particulares',
-      description:
-        'Formulário para declaração de prejuízos em habitações particulares causados pelas tempestades.',
+      description: 'Formulário para declaração de prejuízos em habitações particulares causados pelas tempestades.',
       link: 'https://shorturl.at/febPL',
       linkLabel: 'Preencher formulário →',
     },
     {
       id: 'admin-business',
       title: 'Declaração de danos — Empresas',
-      description:
-        'Formulário para declaração de estragos causados pelas intempéries em empresas e indústrias.',
+      description: 'Formulário para declaração de estragos causados pelas intempéries em empresas e indústrias.',
       link: 'https://shorturl.at/4q1yC',
       linkLabel: 'Preencher formulário →',
     },
