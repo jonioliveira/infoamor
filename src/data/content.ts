@@ -109,7 +109,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '20 de Fevereiro de 2026',
+    lastUpdated: '24 de Fevereiro de 2026',
   },
 
   navSections: [
@@ -203,10 +203,10 @@ export const siteContent: SiteContent = {
     },
     {
       id: 'service-mail',
-      name: 'Correio',
-      status: 'partial',
-      statusLabel: 'Parcial',
-      description: 'Apenas entrega de cartas registadas e encomendas. Não se efetuam envios.',
+      name: 'Correio / CTT',
+      status: 'operational',
+      statusLabel: 'Operacional',
+      description: 'O Posto de Correios/CTT da Junta de Freguesia retoma atividade normal a partir de 25 de fevereiro de 2026.',
     },
     {
       id: 'service-pharmacy',

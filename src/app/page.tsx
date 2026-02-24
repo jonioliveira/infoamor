@@ -462,6 +462,7 @@ export default function Home() {
   const [showSearch, setShowSearch] = useState(false)
   const [showComunicado, setShowComunicado] = useState(false)
   const [showRoadsModal, setShowRoadsModal] = useState(false)
+  const [showCTTModal, setShowCTTModal] = useState(false)
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set(['meteo']))
   const [bolsaServicos, setBolsaServicos] = useState<ServicoPublico[]>([])
   const [bolsaLoading, setBolsaLoading] = useState(true)
@@ -479,6 +480,7 @@ export default function Home() {
         setShowVolunteerModal(false)
         setShowComunicado(false)
         setShowRoadsModal(false)
+        setShowCTTModal(false)
         setShowSearch(false)
         setSearchQuery('')
       }
@@ -894,6 +896,25 @@ export default function Home() {
             </div>
           </button>
 
+          {/* CTT comunicado */}
+          <button
+            onClick={() => setShowCTTModal(true)}
+            className="w-full border-l-4 border-green-500 bg-green-50 text-green-900 rounded-r-xl px-5 py-4 shadow-sm text-left hover:bg-green-100 transition-colors"
+          >
+            <div className="flex items-start gap-4">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-500 text-white">
+                <Mail className="h-3.5 w-3.5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-bold text-[0.9rem] leading-snug">Posto de Correios de Amor — Retoma Atividade</p>
+                  <span className="text-xs font-medium text-green-600 bg-green-200/60 rounded-full px-2.5 py-0.5 shrink-0">Ler mais</span>
+                </div>
+                <p className="text-sm mt-1 opacity-75 leading-relaxed">A partir de amanhã, dia 25 de fevereiro, o CTT retoma atividade regular no edifício da Junta.</p>
+              </div>
+            </div>
+          </button>
+
           {/* Always show critical (danger) alerts */}
           {criticalAlerts.map(alert => (
             <AlertBanner key={alert.id} alert={alert} />
@@ -1202,6 +1223,40 @@ export default function Home() {
                 </p>
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-2">
                   <p className="text-amber-800 font-semibold">Agradecemos o esforço de todos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* CTT Modal */}
+        {showCTTModal && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowCTTModal(false)} role="dialog" aria-modal="true" aria-labelledby="ctt-modal-title">
+            <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-green-50">
+                <div>
+                  <h3 id="ctt-modal-title" className="font-bold text-green-900 text-lg font-[family-name:var(--font-space-grotesk)]">
+                    Posto de Correios de Amor
+                  </h3>
+                  <p className="text-xs text-green-600 font-medium mt-0.5">Junta de Freguesia de Amor</p>
+                </div>
+                <button
+                  onClick={() => setShowCTTModal(false)}
+                  className="p-2 hover:bg-green-100 rounded-lg transition-colors"
+                  aria-label="Fechar"
+                >
+                  <X className="h-5 w-5 text-green-700" />
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto max-h-[70vh] space-y-4 text-sm text-slate-700 leading-relaxed">
+                <p>
+                  Informamos que, a partir de <strong>amanhã, dia 25 de fevereiro (quarta-feira)</strong>, o Posto de Correios/CTT instalado no edifício da Junta de Freguesia deverá retomar a sua <strong>atividade regular</strong>.
+                </p>
+                <p>
+                  O problema de comunicações que persistia desde a <strong>tempestade do passado dia 28 de janeiro</strong> estará, previsivelmente, resolvido, permitindo retomar o normal funcionamento do serviço.
+                </p>
+                <div className="bg-green-50 border border-green-200 rounded-xl p-4 mt-2">
+                  <p className="text-green-800 font-semibold">Esperamos poder voltar a servir a população como sempre o temos feito.</p>
                 </div>
               </div>
             </div>
