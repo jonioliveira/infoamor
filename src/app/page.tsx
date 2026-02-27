@@ -463,6 +463,7 @@ export default function Home() {
   const [showComunicado, setShowComunicado] = useState(false)
   const [showRoadsModal, setShowRoadsModal] = useState(false)
   const [showCTTModal, setShowCTTModal] = useState(false)
+  const [showAmiantoModal, setShowAmiantoModal] = useState(false)
   const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set(['meteo']))
   const [bolsaServicos, setBolsaServicos] = useState<ServicoPublico[]>([])
   const [bolsaLoading, setBolsaLoading] = useState(true)
@@ -481,6 +482,7 @@ export default function Home() {
         setShowComunicado(false)
         setShowRoadsModal(false)
         setShowCTTModal(false)
+        setShowAmiantoModal(false)
         setShowSearch(false)
         setSearchQuery('')
       }
@@ -915,6 +917,25 @@ export default function Home() {
             </div>
           </button>
 
+          {/* Amianto comunicado */}
+          <button
+            onClick={() => setShowAmiantoModal(true)}
+            className="w-full border-l-4 border-orange-500 bg-orange-50 text-orange-900 rounded-r-xl px-5 py-4 shadow-sm text-left hover:bg-orange-100 transition-colors"
+          >
+            <div className="flex items-start gap-4">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white">
+                <FileText className="h-3.5 w-3.5" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-bold text-[0.9rem] leading-snug">Suspensão da autorização prévia da ACT para remoção de amianto</p>
+                  <span className="text-xs font-medium text-orange-600 bg-orange-200/60 rounded-full px-2.5 py-0.5 shrink-0">Ler mais</span>
+                </div>
+                <p className="text-sm mt-1 opacity-75 leading-relaxed">Regime excecional suspende autorização prévia da ACT para demolição ou remoção de amianto nos concelhos afetados pela tempestade Kristin.</p>
+              </div>
+            </div>
+          </button>
+
           {/* Always show critical (danger) alerts */}
           {criticalAlerts.map(alert => (
             <AlertBanner key={alert.id} alert={alert} />
@@ -1257,6 +1278,58 @@ export default function Home() {
                 </p>
                 <div className="bg-green-50 border border-green-200 rounded-xl p-4 mt-2">
                   <p className="text-green-800 font-semibold">Esperamos poder voltar a servir a população como sempre o temos feito.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Amianto Modal */}
+        {showAmiantoModal && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowAmiantoModal(false)} role="dialog" aria-modal="true" aria-labelledby="amianto-modal-title">
+            <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] overflow-hidden" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-orange-50">
+                <div>
+                  <h3 id="amianto-modal-title" className="font-bold text-orange-900 text-lg font-[family-name:var(--font-space-grotesk)]">
+                    Autorização Prévia ACT — Remoção de Amianto
+                  </h3>
+                  <p className="text-xs text-orange-600 font-medium mt-0.5">Decreto-Lei n.º 40-A/2026, de 13 de fevereiro</p>
+                </div>
+                <button
+                  onClick={() => setShowAmiantoModal(false)}
+                  className="p-2 hover:bg-orange-100 rounded-lg transition-colors"
+                  aria-label="Fechar"
+                >
+                  <X className="h-5 w-5 text-orange-700" />
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto max-h-[70vh] space-y-4 text-sm text-slate-700 leading-relaxed">
+                <p>
+                  O regime excecional e temporário de simplificação administrativa e financeira destinado à reconstrução e reabilitação de património e das infraestruturas localizadas nos concelhos afetados pela tempestade <strong>«Kristin»</strong> (Decreto-Lei n.º 40-A/2026, de 13 de fevereiro) prevê medidas relativamente a operações de limpeza e remoção de amianto.
+                </p>
+                <div className="bg-orange-50 border border-orange-200 rounded-xl p-4">
+                  <p className="font-bold text-orange-800 mb-2">O que está suspenso</p>
+                  <p className="text-orange-700">
+                    Encontra-se <strong>suspensa, pelo período de três meses</strong> seguintes à declaração da situação de calamidade, a obrigação de autorização prévia da <strong>Autoridade para as Condições de Trabalho (ACT)</strong> para a realização de trabalhos que envolvam demolição ou remoção de amianto ou de materiais que o contenham (artigos 11.º e 24.º do Decreto-Lei n.º 266/2007, de 24 de julho).
+                  </p>
+                </div>
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 space-y-3">
+                  <p className="font-bold text-amber-800">O que se mantém obrigatório</p>
+                  <div className="space-y-2 text-amber-700">
+                    <div className="flex items-start gap-2">
+                      <span className="font-bold shrink-0">1.</span>
+                      <p><strong>Notificação à ACT</strong> (artigo 3.º do Decreto-Lei n.º 266/2007), a qual deve ser feita <strong>até ao início dos trabalhos</strong>.</p>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="font-bold shrink-0">2.</span>
+                      <p>As <strong>demais obrigações em matéria de segurança e saúde no trabalho</strong>, nomeadamente a garantia do cumprimento do <strong>valor limite de exposição</strong> previsto no artigo 4.º do mesmo diploma, bem como a adoção das <strong>medidas preventivas</strong> de modo a limitar a exposição dos trabalhadores às poeiras de amianto.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                  <p className="text-slate-600 text-xs">
+                    Este regime aplica-se aos concelhos territorialmente abrangidos pela declaração de situação de calamidade, constante da <strong>Resolução do Conselho de Ministros n.º 15-B/2026, de 30 de janeiro</strong>, e respetivas prorrogações e alargamentos territoriais.
+                  </p>
                 </div>
               </div>
             </div>
