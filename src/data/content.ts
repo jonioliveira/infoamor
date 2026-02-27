@@ -144,23 +144,9 @@ export const siteContent: SiteContent = {
     {
       id: 'service-electricity',
       name: 'Eletricidade',
-      status: 'partial',
-      statusLabel: 'Parcial',
-      description:
-        'Foi colocado um gerador junto ao posto de transformação da Rua da Fé para alimentar as Barradas e o Toco. A E-Redes, após o acidente mortal recente, exige precauções adicionais antes de ligar qualquer gerador. A Junta continua em contacto para repor a energia o mais brevemente possível.',
-      warning: 'Cuidado com cabos caídos — não toque, podem ter energia.',
-      link: 'https://balcaodigital.e-redes.pt/home/risky',
-      linkLabel: 'Reportar cabos perigosos →',
-      links: [
-        {
-          url: 'https://balcaodigital.e-redes.pt/anomalies/without-light',
-          label: 'Reportar falta de luz em casa →',
-        },
-        {
-          url: 'https://www.google.com/maps/d/u/2/edit?mid=1XOtW7twJG1JfIqKC8py8jFkt1m6_rRY&usp=sharing',
-          label: 'Ver mapa de ruas com problemas elétricos →',
-        },
-      ],
+      status: 'operational',
+      statusLabel: 'Operacional',
+      description: 'Abastecimento elétrico reposto em toda a freguesia pela E-Redes. Informe a Junta em caso de falha.',
     },
     {
       id: 'service-telecom',
