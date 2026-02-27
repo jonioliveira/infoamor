@@ -304,14 +304,6 @@ export const siteContent: SiteContent = {
 
   transport: [
     {
-      id: 'transport-bolt',
-      provider: 'Bolt',
-      title: 'Viagens gratuitas',
-      description: 'Deslocações gratuitas de Amor até ao Estádio Municipal de Leiria.',
-      details: ['Até 20€ por viagem', 'Máximo de 4 viagens por utilizador'],
-      period: '3 a 15 de Fevereiro',
-    },
-    {
       id: 'transport-bus',
       provider: 'Transportes públicos',
       title: 'Rotas adaptadas',
