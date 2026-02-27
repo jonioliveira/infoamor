@@ -131,13 +131,6 @@ export const siteContent: SiteContent = {
       description:
         'Preencha as declarações de prejuízos agrícolas, empresariais e em habitações com a maior brevidade possível.',
     },
-    {
-      id: 'alert-internet-junta',
-      level: 'warning',
-      title: 'Internet limitada na Junta',
-      description:
-        'De momento, temos internet muito limitada na Junta de Freguesia, o que não nos vai permitir atender todos os fregueses com a rapidez que gostaríamos.',
-    },
   ],
 
   serviceStatus: [
