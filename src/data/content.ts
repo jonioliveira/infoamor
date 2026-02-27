@@ -109,7 +109,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '24 de Fevereiro de 2026',
+    lastUpdated: '27 de Fevereiro de 2026',
   },
 
   navSections: [
