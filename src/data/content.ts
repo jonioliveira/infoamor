@@ -378,6 +378,15 @@ export const siteContent: SiteContent = {
       note: 'Prazo: até 5 de março de 2026. Serviço gratuito da Fullback.',
     },
     {
+      id: 'admin-agricultural-support',
+      title: 'Apoio para restabelecimento do potencial produtivo',
+      description:
+        'Apoios agrícolas para restabelecimento do potencial produtivo afetado pela Tempestade Kristin (3.º concurso). Submissão de candidaturas válida até 30 de abril de 2026.',
+      link: 'https://pepacc.pt/concursos/restabelecimento-do-potencial-produtivo-tempestade-kristin-3o-concurso/',
+      linkLabel: 'Ver concurso →',
+      note: 'Prazo: até 30 de abril de 2026.',
+    },
+    {
       id: 'admin-caderneta',
       title: 'Caderneta predial para seguro',
       description: 'Obtenção gratuita de caderneta predial. Envie o artigo matricial e o NIF.',
