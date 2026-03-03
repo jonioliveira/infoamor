@@ -109,7 +109,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '27 de Fevereiro de 2026',
+    lastUpdated: '3 de Março de 2026',
   },
 
   navSections: [
@@ -124,6 +124,13 @@ export const siteContent: SiteContent = {
   ],
 
   alerts: [
+    {
+      id: 'alert-roads',
+      level: 'warning',
+      title: 'Estradas do Campo',
+      description:
+        'A Rua Campos do Lis encontra-se aberta em toda a sua extensão, desde o acesso da Gândara dos Olivais, na sua continuação para a Barosa, até à Serra de Porto de Urso. Mantêm-se, no entanto, encerrados os três acessos que cruzam os campos: ⛔ Serra de Porto de Urso/Amor para Ruivaqueira · ⛔ Amor para Ortigosa · ⛔ Barreiros para a Ponte da Pedra. Assim que existirem alterações no território amoresense, daremos a devida informação à população.',
+    },
     {
       id: 'alert-damages',
       level: 'warning',
