@@ -109,7 +109,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '3 de Março de 2026',
+    lastUpdated: '4 de Março de 2026',
   },
 
   navSections: [
@@ -124,6 +124,13 @@ export const siteContent: SiteContent = {
   ],
 
   alerts: [
+    {
+      id: 'alert-casalito-closure',
+      level: 'warning',
+      title: 'Depósito de Material e Entulho do Casalito',
+      description:
+        'O espaço criado no campo de futebol do Casalito para deposição de entulho, metais, resíduos verdes e outros materiais resultantes das tempestades será encerrado no próximo dia 9 de março. Solicitamos a todos os fregueses que ainda pretendam colocar materiais que o façam até essa data. A partir do dia seguinte, o Município de Leiria dará início à remoção dos resíduos e à limpeza do espaço, que não voltará a abrir para este fim. Agradecemos a compreensão e a colaboração de todos.',
+    },
     {
       id: 'alert-roads',
       level: 'warning',
