@@ -146,7 +146,7 @@ function AlertBanner({ alert }: { alert: Alert }) {
         </span>
         <div className="min-w-0">
           <p className="font-bold text-[0.9rem] leading-snug">{alert.title}</p>
-          <p className="text-sm mt-1 opacity-75 leading-relaxed">{alert.description}</p>
+          <p className="text-sm mt-1 opacity-75 leading-relaxed whitespace-pre-line">{alert.description}</p>
         </div>
       </div>
     </div>

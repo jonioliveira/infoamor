@@ -109,7 +109,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '4 de Março de 2026',
+    lastUpdated: '5 de Março de 2026',
   },
 
   navSections: [
@@ -124,6 +124,13 @@ export const siteContent: SiteContent = {
   ],
 
   alerts: [
+    {
+      id: 'alert-orange-wind',
+      level: 'danger',
+      title: '🌬️ Aviso Laranja para Vento Forte — Distrito de Leiria',
+      description:
+        'A partir das 9h de amanhã, 6.ª feira, o distrito de Leiria estará sob Aviso Laranja para vento, até às 15h. O IPMA prevê rajadas na ordem dos 90km/h nas faixas costeiras e nas serras.\n\nRecomendamos que:\n🌳 Evite passar e/ou estacionar em zonas arborizadas. Os solos estão ainda um pouco instáveis. As árvores e os ramos poderão ceder ao vento mais forte.\n⚡ Não circule junto a postes ainda caídos ou inclinados.\n🗺️ Fixe andaimes, placards e estruturas soltas que possam ser arrastados pelo vento.\n🪟 Feche e reforce estores e janelas, em especial os que estão virados na direção do vento (norte).\n🪴 Fixe os objetos no exterior e de varandas e parapeitos, como vasos, mobiliário de jardim ou outros.\n\nEntre as 15h e as 21h, o aviso passa para Amarelo, com previsões de rajadas de vento na ordem dos 80km/h.\n\n⚠️ Em caso de alguma situação fora do normal, contacte o 112 ou o Serviço Municipal de Proteção Civil de Leiria (244 849 700 — chamada para rede fixa nacional).\n\n🙏🏻💪 Mantenha-se em segurança e proteja os seus bens e as pessoas mais vulneráveis.',
+    },
     {
       id: 'alert-casalito-closure',
       level: 'warning',
