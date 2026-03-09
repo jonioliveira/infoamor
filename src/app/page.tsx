@@ -457,7 +457,6 @@ export default function Home() {
   const [showLocationsModal, setShowLocationsModal] = useState(false)
   const [modalLocations, setModalLocations] = useState<{ title: string; locations: string[] } | null>(null)
   const [showAllAlerts, setShowAllAlerts] = useState(false)
-  const [showVolunteerModal, setShowVolunteerModal] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [showSearch, setShowSearch] = useState(false)
   const [showRoadsModal, setShowRoadsModal] = useState(false)
@@ -476,7 +475,6 @@ export default function Home() {
     const handleKeyboard = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setShowLocationsModal(false)
-        setShowVolunteerModal(false)
         setShowRoadsModal(false)
         setShowCTTModal(false)
         setShowAmiantoModal(false)
@@ -786,71 +784,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ================================================================== */}
-      {/* QUICK ACTIONS - "Preciso de Ajuda"                                  */}
-      {/* ================================================================== */}
-      <section id="ajuda" className="bg-gradient-to-b from-slate-100 to-slate-50 py-8 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-5 md:px-10">
-          <h2 className="text-center text-lg font-bold text-slate-700 mb-5 font-[family-name:var(--font-space-grotesk)]">
-            O que precisa?
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
-            <button
-              onClick={() => setShowVolunteerModal(true)}
-              className="flex flex-col items-center gap-2 bg-amber-50 rounded-2xl p-5 shadow-md border-2 border-amber-400 hover:border-amber-500 hover:shadow-lg transition-all col-span-2 md:col-span-1"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
-                <Users className="h-6 w-6 text-amber-600" />
-              </div>
-              <span className="font-bold text-amber-800 text-sm text-center">Sou Voluntário</span>
-            </button>
-            <a
-              href="https://chat.whatsapp.com/FisY199oJlgB3umsP5tfoG"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-green-200 hover:border-green-400 hover:shadow-lg transition-all"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                <MessageCircle className="h-6 w-6 text-green-600" />
-              </div>
-              <span className="font-bold text-slate-800 text-sm text-center">Grupo WhatsApp</span>
-            </a>
-            <button
-              onClick={() => scrollTo('recursos')}
-              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-orange-200 hover:border-orange-400 hover:shadow-lg transition-all"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
-                <Utensils className="h-6 w-6 text-orange-600" />
-              </div>
-              <span className="font-bold text-slate-800 text-sm text-center">Alimentação</span>
-            </button>
-            <button
-              onClick={() => {
-                const showerResource = c.resources.find(r => r.id === 'resource-shower')
-                if (showerResource?.locations) {
-                  setModalLocations({ title: showerResource.title, locations: showerResource.locations })
-                  setShowLocationsModal(true)
-                }
-              }}
-              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-sky-200 hover:border-sky-400 hover:shadow-lg transition-all"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-100">
-                <Waves className="h-6 w-6 text-sky-600" />
-              </div>
-              <span className="font-bold text-slate-800 text-sm text-center">Banho / Abrigo</span>
-            </button>
-            <button
-              onClick={() => scrollTo('declaracoes')}
-              className="flex flex-col items-center gap-2 bg-white rounded-2xl p-5 shadow-md border-2 border-purple-200 hover:border-purple-400 hover:shadow-lg transition-all"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
-                <FileText className="h-6 w-6 text-purple-600" />
-              </div>
-              <span className="font-bold text-slate-800 text-sm text-center">Reportar Danos e Apoios</span>
-            </button>
-          </div>
-        </div>
-      </section>
 
       {/* ================================================================== */}
       {/* ALERT BANNERS - Critical first, others collapsible                  */}
@@ -1029,97 +962,6 @@ export default function Home() {
           </div>
         )}
 
-        {/* Volunteer Modal */}
-        {showVolunteerModal && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowVolunteerModal(false)} role="dialog" aria-modal="true" aria-labelledby="volunteer-modal-title">
-            <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[85vh] overflow-hidden" onClick={e => e.stopPropagation()}>
-              <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-amber-50">
-                <h3 id="volunteer-modal-title" className="font-bold text-amber-900 text-lg font-[family-name:var(--font-space-grotesk)]">
-                  Notas aos Voluntários
-                </h3>
-                <button
-                  onClick={() => setShowVolunteerModal(false)}
-                  className="p-2 hover:bg-amber-100 rounded-lg transition-colors"
-                  aria-label="Fechar"
-                >
-                  <X className="h-5 w-5 text-amber-700" />
-                </button>
-              </div>
-              <div className="p-5 overflow-y-auto max-h-[70vh] space-y-4 text-sm">
-                <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-                  <p className="font-bold text-red-800 mb-2">⚠️ Atenção</p>
-                  <p className="text-red-700">Estamos sem comunicações no local. Se houver cancelamento devido ao tempo, avisamos. Verifiquem as notícias antes de sair — não corram perigo!</p>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">📍</span>
-                    <p className="text-slate-700"><strong>GPS Offline:</strong> Guardem nos Google Maps/GPS offline toda a área de Leiria, Marinha Grande e Pombal.</p>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">🧤</span>
-                    <p className="text-slate-700"><strong>Autoproteção:</strong> Luvas, calçado resistente que possa sujar/molhar, casacos impermeáveis.</p>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">🔧</span>
-                    <p className="text-slate-700"><strong>Equipamento útil:</strong> Pás, enxadas, vassouras grossas ou rodos (para juntar montes de lixo).</p>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">🚫</span>
-                    <p className="text-slate-700"><strong>Telhados:</strong> Não ambicionar reparar telhados sem experiência — os riscos são tremendos e não há seguros.</p>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">🍽️</span>
-                    <p className="text-slate-700"><strong>Refeições:</strong> Em Barreiros (Amor) há um restaurante a funcionar. Na Marinha Grande (~10km): McDonald&apos;s e Burger King.</p>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl">📦</span>
-                    <p className="text-slate-700"><strong>Donativos a trazer:</strong> Entregar apenas na Junta de Amor — poliuretano, produtos de limpeza, gasolina para geradores, alimentos não perecíveis, fraldas para bebés.</p>
-                  </div>
-                </div>
-
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                  <p className="font-bold text-slate-800 mb-2">🤝 Atitudes</p>
-                  <ul className="text-slate-600 space-y-1">
-                    <li>• Bom senso de autoproteção</li>
-                    <li>• Alegria e dinamismo para ver/procurar trabalho</li>
-                    <li>• Compreensão — estamos cansados, em condições precárias, mas a tentar</li>
-                  </ul>
-                </div>
-
-                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-                  <p className="font-bold text-amber-800 mb-3">📍 Ponto de encontro</p>
-                  <a
-                    href="https://maps.app.goo.gl/EBT1rJcKS8GFVZUR9"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-3 py-2 transition-colors"
-                    aria-label="Ver ponto de encontro de Amor no Google Maps"
-                  >
-                    <MapPin className="h-4 w-4" />
-                    Amor
-                  </a>
-                </div>
-
-                <a
-                  href="https://maps.app.goo.gl/5tRzpnafeQtNVQqr9"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-600 hover:bg-slate-700 text-white text-sm font-semibold px-5 py-3 transition-colors w-full"
-                  aria-label="Ver localização da Junta de Freguesia no Google Maps"
-                >
-                  <MapPin className="h-4 w-4" />
-                  Junta de Freguesia (donativos)
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Roads Modal */}
         {showRoadsModal && (

@@ -125,25 +125,11 @@ export const siteContent: SiteContent = {
 
   alerts: [
     {
-      id: 'alert-orange-wind',
-      level: 'danger',
-      title: '🌬️ Aviso Laranja para Vento Forte — Distrito de Leiria',
-      description:
-        'A partir das 9h de amanhã, 6.ª feira, o distrito de Leiria estará sob Aviso Laranja para vento, até às 15h. O IPMA prevê rajadas na ordem dos 90km/h nas faixas costeiras e nas serras.\n\nRecomendamos que:\n🌳 Evite passar e/ou estacionar em zonas arborizadas. Os solos estão ainda um pouco instáveis. As árvores e os ramos poderão ceder ao vento mais forte.\n⚡ Não circule junto a postes ainda caídos ou inclinados.\n🗺️ Fixe andaimes, placards e estruturas soltas que possam ser arrastados pelo vento.\n🪟 Feche e reforce estores e janelas, em especial os que estão virados na direção do vento (norte).\n🪴 Fixe os objetos no exterior e de varandas e parapeitos, como vasos, mobiliário de jardim ou outros.\n\nEntre as 15h e as 21h, o aviso passa para Amarelo, com previsões de rajadas de vento na ordem dos 80km/h.\n\n⚠️ Em caso de alguma situação fora do normal, contacte o 112 ou o Serviço Municipal de Proteção Civil de Leiria (244 849 700 — chamada para rede fixa nacional).\n\n🙏🏻💪 Mantenha-se em segurança e proteja os seus bens e as pessoas mais vulneráveis.',
-    },
-    {
       id: 'alert-casalito-closure',
       level: 'warning',
       title: 'Depósito de Material e Entulho do Casalito',
       description:
         'O espaço criado no campo de futebol do Casalito para deposição de entulho, metais, resíduos verdes e outros materiais resultantes das tempestades será encerrado no próximo dia 9 de março. Solicitamos a todos os fregueses que ainda pretendam colocar materiais que o façam até essa data. A partir do dia seguinte, o Município de Leiria dará início à remoção dos resíduos e à limpeza do espaço, que não voltará a abrir para este fim. Agradecemos a compreensão e a colaboração de todos.',
-    },
-    {
-      id: 'alert-roads',
-      level: 'warning',
-      title: 'Estradas do Campo',
-      description:
-        'A Rua Campos do Lis encontra-se aberta em toda a sua extensão, desde o acesso da Gândara dos Olivais, na sua continuação para a Barosa, até à Serra de Porto de Urso. Mantêm-se, no entanto, encerrados os três acessos que cruzam os campos: ⛔ Serra de Porto de Urso/Amor para Ruivaqueira · ⛔ Amor para Ortigosa · ⛔ Barreiros para a Ponte da Pedra. Assim que existirem alterações no território amoresense, daremos a devida informação à população.',
     },
     {
       id: 'alert-damages',
@@ -179,9 +165,9 @@ export const siteContent: SiteContent = {
     {
       id: 'service-atm',
       name: 'Multibanco',
-      status: 'outage',
-      statusLabel: 'Inoperacional',
-      description: 'Terminais de pagamento e caixas automáticas sem serviço.',
+      status: 'operational',
+      statusLabel: 'Operacional',
+      description: '',
     },
     {
       id: 'service-schools',
@@ -206,63 +192,23 @@ export const siteContent: SiteContent = {
       name: 'Correio / CTT',
       status: 'operational',
       statusLabel: 'Operacional',
-      description: 'O Posto de Correios/CTT da Junta de Freguesia retoma atividade normal a partir de 25 de fevereiro de 2026.',
+      description: 'Os serviços de Correio / CTT estão funcionais.',
     },
     {
       id: 'service-pharmacy',
       name: 'Farmácia',
       status: 'operational',
       statusLabel: 'Operacional',
-      description:
-        'Os serviços de farmácia estão operacionais. Apesar de com alguns problemas informáticos e dificuldade no uso de cartões de multibanco.',
-    },
-    {
-      id: 'service-pensions',
-      name: 'Vales e reformas',
-      status: 'outage',
-      statusLabel: 'Indisponível',
-      description:
-        'Não é possível efetuar o pagamento de vales e reformas na Junta de Freguesia. Por favor, dirijam-se a Leiria.',
+      description: 'Os serviços de farmácia estão operacionais.',
     },
   ],
 
   resources: [
     {
-      id: 'resource-food',
-      title: 'Alimentação',
-      description:
-        'Refeições disponíveis na Junta de Freguesia e no Estádio Municipal (Porta 10). Doações de alimentos aceites na Junta.',
-    },
-    {
-      id: 'resource-shower',
-      title: 'Banho Quente',
-      description: 'Vários locais na região com banhos quentes disponíveis para a população afetada.',
-      locations: [
-        'CRC 22 Junho (Amor)',
-        'Leroy Merlin (Leiria)',
-        'Junta de Freguesia dos Parceiros',
-        'Pavilhão Desportivo do Souto da Carpalhosa',
-        'Campo de Futebol da Batalha',
-        'Piscinas Municipais de Porto de Mós',
-        'Piscinas Municipais de Alcobaça',
-        'Colégio São Miguel (Fátima)',
-        'Base Aérea nº 5 – Monte Real (Pavilhão)',
-        'Pavilhão Desportivo de Santa Eufémia',
-        'União Desportiva de Santa Catarina da Serra',
-        'ADCCMI da Cruz da Areia',
-      ],
-    },
-    {
       id: 'resource-debris',
       title: 'Entulho, telhas, fibrocimento e verdes',
       description: 'Depositar no campo de futebol do Casalito. O espaço está dividido conforme o tipo de material.',
       warning: 'Não depositar junto ao estaleiro da Junta (Marinheira).',
-    },
-    {
-      id: 'resource-tarpaulin',
-      title: 'Lonas',
-      description: 'Pode requisitar lona na Junta de Freguesia (traga as medidas) ou recolher no Pavilhão dos Pousos.',
-      warning: 'Apenas se entregam lonas para cobrir habitações primárias.',
     },
     {
       id: 'resource-tiles',
@@ -275,12 +221,6 @@ export const siteContent: SiteContent = {
       title: 'Internet e carregamento',
       description:
         'Ligação wireless disponível na Junta de Freguesia, em rede aberta. Posto de carregamento de telemóvel também disponível. Internet também disponível no Bar Unidos (rede Unidos-Starlink).',
-    },
-    {
-      id: 'resource-censocapa',
-      title: 'CENSOCAPA — Apoio à população',
-      description:
-        'Sopa, banhos quentes e lavagem de roupa. Todos os serviços por marcação (de preferência no dia anterior), sujeitos a disponibilidade. Contactos: 244 840 244 · 918 448 687 (Luzia) · 918 716 397 (Vilma) · 967 777 913 (Patrícia).',
     },
     {
       id: 'resource-whatsapp',
