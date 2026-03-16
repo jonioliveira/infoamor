@@ -5,6 +5,8 @@ export interface Alert {
   level: AlertLevel
   title: string
   description: string
+  link?: string
+  linkLabel?: string
 }
 
 export type ServiceStatusLevel = 'operational' | 'partial' | 'outage' | 'unknown' | 'in_progress'
@@ -109,7 +111,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '6 de Março de 2026',
+    lastUpdated: '16 de Março de 2026',
   },
 
   navSections: [
@@ -124,6 +126,15 @@ export const siteContent: SiteContent = {
   ],
 
   alerts: [
+    {
+      id: 'alert-reerguer-leiria-gabinetes',
+      level: 'info',
+      title: 'REERGUER LEIRIA – Gabinetes nas Freguesias',
+      description:
+        '📅 17 de março  🕙 Das 10h às 17h  📍 Junta de Freguesia\n\nPrecisa de apoio para submeter a sua candidatura na plataforma da CCDR Centro? Aproveite este apoio gratuito para submeter o seu pedido. Faça a sua inscrição na Junta de Freguesia ou em https://forms.gle/UWabr7PJAjPi1tdK9\n\nCaso não possa nesse dia, iremos contactá-lo para atender o mais rápido possível. Pedimos a todos que façam a inscrição também de familiares e vizinhos que possam não ter acesso à internet ou facilidade na sua utilização.',
+      link: 'https://forms.gle/UWabr7PJAjPi1tdK9',
+      linkLabel: 'Fazer inscrição →',
+    },
     {
       id: 'alert-casalito-closure',
       level: 'warning',

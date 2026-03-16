@@ -147,6 +147,11 @@ function AlertBanner({ alert }: { alert: Alert }) {
         <div className="min-w-0">
           <p className="font-bold text-[0.9rem] leading-snug">{alert.title}</p>
           <p className="text-sm mt-1 opacity-75 leading-relaxed whitespace-pre-line">{alert.description}</p>
+          {alert.link && (
+            <a href={alert.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 mt-2 text-sm font-semibold underline underline-offset-2 opacity-90 hover:opacity-100">
+              {alert.linkLabel ?? alert.link}
+            </a>
+          )}
         </div>
       </div>
     </div>
