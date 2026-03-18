@@ -111,7 +111,7 @@ export const siteContent: SiteContent = {
   meta: {
     title: 'Info Amor',
     subtitle: 'Informações de Emergência — Tempestade Kristin',
-    lastUpdated: '16 de Março de 2026',
+    lastUpdated: '18 de Março de 2026',
   },
 
   navSections: [
@@ -126,6 +126,20 @@ export const siteContent: SiteContent = {
   ],
 
   alerts: [
+    {
+      id: 'alert-acesso-barreiros-ponte-pedra',
+      level: 'info',
+      title: 'Acesso Restabelecido – Barreiros / Ponte da Pedra',
+      description:
+        '✅ A ligação dos Barreiros à Ponte da Pedra (Freguesia de Regueira de Pontes) já se encontra restabelecida desde ontem ao final do dia.\n\nApós a realização de vistorias técnicas, foi considerado que a via não apresenta riscos para a circulação automóvel ou pedonal, podendo ser utilizada com normalidade. A situação vai continuar a ser acompanhada pelos serviços autárquicos.',
+    },
+    {
+      id: 'alert-rua-rei-lavrador',
+      level: 'warning',
+      title: 'Rua Rei Lavrador – Em Reparação',
+      description:
+        '⚠️ As entidades competentes já avaliaram os estragos na Rua Rei Lavrador e encontram-se a trabalhar na correção dos taludes, de forma a permitir a reabertura o mais rapidamente possível.',
+    },
     {
       id: 'alert-reerguer-leiria-gabinetes',
       level: 'info',
