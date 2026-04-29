@@ -1,6 +1,6 @@
 'use client'
 
-import { siteContent, type Alert, type AlertLevel, type ServicoPublico, type ServiceStatus, type ServiceStatusLevel } from '@/data/content'
+import { siteContent, type Alert, type AlertLevel, type EnvironmentItem, type ServicoPublico, type ServiceStatus, type ServiceStatusLevel } from '@/data/content'
 import {
   Activity,
   AlertTriangle,
@@ -34,6 +34,10 @@ import {
   HeartPlus,
   Search,
   Info,
+  Lamp,
+  Leaf,
+  BatteryCharging,
+  Shirt,
   Mail,
   MapPin,
   Menu,
@@ -116,6 +120,14 @@ const serviceIcons: Record<string, React.ReactNode> = {
   'service-mail': <Mail className="h-6 w-6 text-green-600" />,
   'service-pharmacy': <HeartPlus className="h-6 w-6 text-green-600" />,
   'service-pensions': <CreditCard className="h-6 w-6 text-orange-500" />,
+}
+
+const environmentIcons: Record<EnvironmentItem['icon'], React.ReactNode> = {
+  oil: <Droplets className="h-6 w-6 text-amber-600" />,
+  lamp: <Lamp className="h-6 w-6 text-yellow-500" />,
+  battery: <BatteryCharging className="h-6 w-6 text-emerald-600" />,
+  monos: <Package className="h-6 w-6 text-slate-500" />,
+  textile: <Shirt className="h-6 w-6 text-rose-500" />,
 }
 
 const resourceIcons: Record<string, React.ReactNode> = {
@@ -466,7 +478,7 @@ export default function Home() {
   const [showSearch, setShowSearch] = useState(false)
   const [showRoadsModal, setShowRoadsModal] = useState(false)
   const [showAmiantoModal, setShowAmiantoModal] = useState(false)
-  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set(['meteo']))
+  const [collapsedSections, setCollapsedSections] = useState<Set<string>>(new Set(['meteo', 'ambiente']))
   const [bolsaServicos, setBolsaServicos] = useState<ServicoPublico[]>([])
   const [bolsaLoading, setBolsaLoading] = useState(true)
   const [bolsaError, setBolsaError] = useState(false)
@@ -570,6 +582,11 @@ export default function Home() {
       s.categoria.toLowerCase().includes(searchQuery.toLowerCase()) ||
       s.descricao.toLowerCase().includes(searchQuery.toLowerCase())
     ),
+    environment: c.environment.filter(e =>
+      e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      e.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (e.location?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false)
+    ),
   } : null
 
   return (
@@ -672,7 +689,18 @@ export default function Home() {
                     ))}
                   </div>
                 )}
-                {searchResults.alerts.length === 0 && searchResults.services.length === 0 && searchResults.resources.length === 0 && searchResults.admin.length === 0 && searchResults.bolsa.length === 0 && (
+                {searchResults.environment.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-xs font-bold text-slate-400 uppercase px-3 py-2">Ambiente</p>
+                    {searchResults.environment.map(e => (
+                      <button key={e.id} onClick={() => { setShowSearch(false); setSearchQuery(''); setCollapsedSections(prev => { const next = new Set(prev); next.delete('ambiente'); return next }); scrollTo('ambiente') }} className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors">
+                        <p className="font-medium text-slate-900">{e.title}</p>
+                        <p className="text-sm text-slate-500 truncate">{e.description}</p>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {searchResults.alerts.length === 0 && searchResults.services.length === 0 && searchResults.resources.length === 0 && searchResults.admin.length === 0 && searchResults.bolsa.length === 0 && searchResults.environment.length === 0 && (
                   <p className="text-center text-slate-500 py-8">Nenhum resultado para &quot;{searchQuery}&quot;</p>
                 )}
               </div>
@@ -1280,6 +1308,64 @@ export default function Home() {
             <SectionHeader id="bolsa-trabalho" icon={<Briefcase className="h-5 w-5" />} title="Bolsa de Trabalho" />
             <p className="text-slate-500 mb-8 -mt-4">Serviços locais disponíveis para ajudar na recuperação.</p>
             <BolsaTrabalho servicos={bolsaServicos} loading={bolsaLoading} error={bolsaError} />
+          </div>
+        </section>
+
+        {/* -------------------------------------------------------------- */}
+        {/* AMBIENTE                                                         */}
+        {/* -------------------------------------------------------------- */}
+        <section className="py-14 md:py-20">
+          <div className="max-w-6xl mx-auto px-5 md:px-10">
+            <CollapsibleSectionHeader
+              id="ambiente"
+              icon={<Leaf className="h-5 w-5" />}
+              title="Ambiente"
+              isCollapsed={collapsedSections.has('ambiente')}
+              onToggle={() => toggleSection('ambiente')}
+            />
+            {!collapsedSections.has('ambiente') && (
+              <>
+                <p className="text-slate-500 mb-8 -mt-4">
+                  Pontos de recolha e serviços de reciclagem na freguesia.{' '}
+                  <a
+                    href="https://www.jf-amor.pt/ver_conteudo/35"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-green-700 hover:text-green-800 font-medium underline underline-offset-2"
+                  >
+                    Mais informação
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                </p>
+                <div className="grid gap-5 md:grid-cols-2">
+                  {c.environment.map(item => (
+                    <div
+                      key={item.id}
+                      className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 border border-slate-100"
+                    >
+                      <div className="flex items-start gap-4 mb-3">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50">
+                          {environmentIcons[item.icon]}
+                        </div>
+                        <h3 className="font-bold text-slate-900 text-lg pt-2 font-[family-name:var(--font-space-grotesk)]">
+                          {item.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
+                      {item.location && (
+                        <div className="mt-3 flex items-start gap-2 text-sm text-emerald-800 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-2">
+                          <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
+                          <span>{item.location}</span>
+                        </div>
+                      )}
+                      {item.note && (
+                        <p className="mt-3 text-xs text-slate-500 italic leading-relaxed">{item.note}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </section>
 
