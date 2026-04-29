@@ -70,6 +70,17 @@ export interface AdministrativeItem {
   note?: string
 }
 
+export type EnvironmentIcon = 'oil' | 'lamp' | 'battery' | 'monos' | 'textile'
+
+export interface EnvironmentItem {
+  id: string
+  icon: EnvironmentIcon
+  title: string
+  description: string
+  location?: string
+  note?: string
+}
+
 export interface ServicoPublico {
   id: number
   nome: string
@@ -104,6 +115,7 @@ export interface SiteContent {
   communityEvents: CommunityEvent[]
   transport: TransportOffer[]
   administrative: AdministrativeItem[]
+  environment: EnvironmentItem[]
   contact: ContactInfo
 }
 
@@ -121,6 +133,7 @@ export const siteContent: SiteContent = {
     { id: 'transporte', label: 'Transporte' },
     { id: 'declaracoes', label: 'Apoios' },
     { id: 'bolsa-trabalho', label: 'Bolsa de Trabalho' },
+    { id: 'ambiente', label: 'Ambiente' },
     { id: 'contactos', label: 'Contactos' },
     { id: 'meteo', label: 'Meteo' },
   ],
@@ -382,6 +395,48 @@ export const siteContent: SiteContent = {
         },
       ],
       note: 'Serviço gratuito.',
+    },
+  ],
+
+  environment: [
+    {
+      id: 'env-oleos',
+      icon: 'oil',
+      title: 'Óleos alimentares usados',
+      description:
+        'Pode depositar os óleos alimentares usados no oleão localizado junto à Farmácia Laranjeira Pais, na Rua das Fontainhas, em Amor.',
+      location: 'Rua das Fontainhas, junto à Farmácia Laranjeira Pais',
+      note: 'Em Portugal são produzidos cerca de 60 milhões de litros de óleos alimentares usados por ano. 1 litro de óleo usado pode poluir cerca de 1 milhão de litros de água.',
+    },
+    {
+      id: 'env-lampadas',
+      icon: 'lamp',
+      title: 'Lâmpadas usadas',
+      description:
+        'A Junta de Freguesia de Amor é ponto de recolha de lâmpadas usadas, recolhidas pela ERP Portugal — Associação Gestora de Resíduos. Aceitam-se lâmpadas tubulares e lâmpadas economizadoras (LED e fluorescentes).',
+      location: 'Junta de Freguesia de Amor',
+    },
+    {
+      id: 'env-pilhas',
+      icon: 'battery',
+      title: 'Pilhas usadas',
+      description:
+        'Existem pilhões para deposição de pilhas usadas distribuídos pela freguesia, em parceria com a ERP Portugal.',
+    },
+    {
+      id: 'env-monos',
+      icon: 'monos',
+      title: 'Monos e equipamentos elétricos (REEE)',
+      description:
+        'Pode depositar monos (móveis, eletrodomésticos e outros volumosos) na sede da Junta de Freguesia, durante o horário de expediente. O Município de Leiria disponibiliza também serviço gratuito de recolha de monos ao domicílio, mediante marcação prévia.',
+      location: 'Junta de Freguesia de Amor (horário de expediente)',
+    },
+    {
+      id: 'env-textil',
+      icon: 'textile',
+      title: 'Roupa, têxteis, calçado, brinquedos e livros',
+      description:
+        'A Junta de Freguesia tem um protocolo de cooperação com o Projeto Esperança — Cooperativa de Solidariedade Social — para recolha de roupa, têxteis, calçado, brinquedos e livros, através de contentores distribuídos pela freguesia.',
     },
   ],
 
